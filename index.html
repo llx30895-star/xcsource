@@ -983,29 +983,37 @@
         submitBtn.disabled = true;
         submitLabel.innerHTML = '<span class="spinner"></span> Sending...';
         clearAlert();
-
-        fetch("/api/send-email", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        })
-          .then(function (res) { return res.json(); })
-          .then(function (data) {
-            if (data.success) {
-              showAlert(data.message || "Message sent! We will reply soon.", "success");
-              form.reset();
-              ["name", "email", "message"].forEach(function (id) { setFieldError(id, false); });
-            } else {
-              showAlert(data.message || "Something went wrong. Please try again.", "error");
-            }
+//邮箱
+	fetch("https://formspree.io/f/xgopljzn", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: formData.name,
+              email: formData.email,
+              company: formData.company,
+              inquiry_type: formData.inquiry_type,
+              message: formData.message,
+            }),
           })
-          .catch(function () {
-            showAlert("Network error — please check your connection and try again.", "error");
-          })
-          .finally(function () {
-            submitBtn.disabled = false;
-            submitLabel.innerHTML = "Send Message";
-          });
+            .then(function (res) {
+              return res.json().then(function(data) {
+                if (data.ok) {
+                  showAlert("Message sent! We will reply within 1–2 business days.", "success");
+                  form.reset();
+                  ["name", "email", "message"].forEach(function (id) { setFieldError(id, false); });
+                } else {
+                  showAlert(data.error || "Something went wrong. Please try again.", "error");
+                }
+              });
+            })
+            .catch(function () {
+              showAlert("Network error — please check your connection and try again.", "error");
+            })
+            .finally(function () {
+              submitBtn.disabled = false;
+              submitLabel.innerHTML = "Send Message";
+            });
+        
       });
     })();
   </script>
