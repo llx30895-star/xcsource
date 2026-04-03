@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XCSOURCE® — World-Class Premium Solutions Specialist in e-Commerce</title>
+  <meta name="description" content="XCSOURCE provides products with premium value to online customers. Mission, brand story, and contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand-red: #D3122B;
+      --brand-red-dark: #b01024;
+      --black: #111111;
+      --gray-900: #1a1a1a;
+      --gray-600: #4b5563;
+      --gray-400: #9ca3af;
+      --gray-100: #f3f4f6;
+      --white: #ffffff;
+      --border: #e5e7eb;
+      --max-w: 1120px;
+      --nav-h: 72px;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "DM Sans", system-ui, -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--gray-600);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── Logo (PNG) ─── */
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--black);
+    }
+    .brand-logo img {
+      display: block;
+      height: 36px;
+      width: auto;
+      max-width: min(280px, 70vw);
+      object-fit: contain;
+    }
+    .footer .brand-logo img { height: 32px; }
+
+    /* ─── Nav (corporate light bar) ─── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid transparent;
+      transition: box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
+    }
+    .nav.scrolled {
+      border-bottom-color: var(--border);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--gray-600);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--brand-red); }
+    .nav-cta {
+      padding: 10px 22px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--brand-red);
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { background: var(--brand-red-dark); transform: translateY(-1px); }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--black);
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      position: fixed;
+      inset: var(--nav-h) 0 0 0;
+      z-index: 999;
+      background: var(--white);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      border-top: 1px solid var(--border);
+    }
+    .mobile-menu.open { opacity: 1; pointer-events: all; }
+    .mobile-menu a {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      text-decoration: none;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .mobile-menu a:hover { color: var(--brand-red); }
+
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      padding-top: calc(var(--nav-h) + 72px);
+      padding-bottom: 80px;
+      background: linear-gradient(180deg, var(--gray-100) 0%, var(--white) 55%);
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-actions { justify-content: center; }
+    }
+    .hero-kicker {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brand-red);
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-size: clamp(1.75rem, 4vw, 2.65rem);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--gray-900);
+      margin-bottom: 20px;
+    }
+    .hero-title .accent { color: var(--brand-red); }
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--gray-600);
+      max-width: 34em;
+      margin-bottom: 28px;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 26px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .btn-primary {
+      background: var(--brand-red);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--brand-red-dark); }
+    .btn-outline {
+      background: transparent;
+      color: var(--gray-900);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--black); color: var(--black); }
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 280px;
+    }
+    .hero-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px 32px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+    }
+    .hero-card .brand-logo { margin-bottom: 20px; }
+    .hero-card .brand-logo img { height: 52px; max-width: 100%; }
+    .hero-card p {
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      border-left: 3px solid var(--brand-red);
+      padding-left: 16px;
+    }
+
+    /* ─── Sections ─── */
+    .section { padding: 88px 0; }
+    .section.alt { background: var(--gray-100); }
+    .section-head {
+      margin-bottom: 40px;
+      max-width: 720px;
+    }
+    .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+    .section-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brand-red);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--gray-900);
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .section-intro {
+      font-size: 1.05rem;
+      color: var(--gray-600);
+    }
+
+    .prose {
+      font-size: 1.05rem;
+      color: var(--gray-600);
+      max-width: 52em;
+    }
+    .prose p + p { margin-top: 1.1em; }
+    .prose strong { color: var(--gray-900); font-weight: 600; }
+
+    .mission-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px 36px;
+      margin-top: 28px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    }
+    .mission-box h3 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brand-red);
+      margin-bottom: 16px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .two-col { grid-template-columns: 1fr; gap: 36px; }
+    }
+    .brand-keys {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .brand-key {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px 22px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .brand-key .k {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--black);
+      color: var(--white);
+      font-weight: 800;
+      font-style: italic;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand-key .k.red { background: var(--brand-red); }
+    .brand-key h4 { font-size: 1rem; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+    .brand-key p { font-size: 0.9rem; color: var(--gray-600); line-height: 1.6; }
+
+    .tagline-bar {
+      margin-top: 36px;
+      padding: 20px 24px;
+      background: var(--gray-900);
+      color: var(--white);
+      border-radius: 8px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .tagline-bar span { color: #fca5a5; }
+
+    /* ─── CTA ─── */
+    .cta {
+      padding: 72px 0 100px;
+    }
+    .cta-inner {
+      background: linear-gradient(135deg, var(--gray-900) 0%, #2d2d2d 100%);
+      border-radius: 12px;
+      padding: 48px 40px;
+      text-align: center;
+    }
+    .cta-inner h2 {
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .cta-inner p {
+      color: var(--gray-400);
+      margin-bottom: 24px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-inner .btn-primary { background: var(--brand-red); }
+    .cta-inner .btn-primary:hover { background: var(--brand-red-dark); }
+
+    /* ─── Footer ─── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 0 48px;
+      background: var(--white);
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .footer-copy { font-size: 0.85rem; color: var(--gray-400); }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      text-decoration: none;
+    }
+    .footer-links a:hover { color: var(--brand-red); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── Cooperation Section ─── */
+    .coop-section {
+      padding: 88px 0;
+      background: var(--white);
+    }
+    .coop-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .coop-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+    .coop-info { padding-top: 8px; }
+    .coop-info p {
+      font-size: 1.05rem;
+      color: var(--gray-600);
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+    .coop-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .coop-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: var(--gray-600);
+    }
+    .coop-features li::before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--brand-red);
+      flex-shrink: 0;
+    }
+    .coop-features li::after {
+      content: "";
+      position: relative;
+      left: -14px;
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: white;
+    }
+
+    /* ─── Contact Form ─── */
+    .contact-form {
+      background: var(--gray-100);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px 32px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-bottom: 6px;
+      letter-spacing: 0.03em;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 11px 14px;
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-size: 0.9rem;
+      color: var(--gray-900);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--brand-red);
+      box-shadow: 0 0 0 3px rgba(211, 18, 43, 0.1);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--gray-400);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239ca3af' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+      cursor: pointer;
+    }
+    .form-submit {
+      width: 100%;
+      padding: 13px 26px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: "DM Sans", system-ui, sans-serif;
+      color: var(--white);
+      background: var(--brand-red);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.02em;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .form-submit:hover:not(:disabled) {
+      background: var(--brand-red-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(211, 18, 43, 0.3);
+    }
+    .form-submit:active:not(:disabled) {
+      transform: translateY(0);
+    }
+    .form-submit:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    /* ─── Form feedback ─── */
+    .form-alert {
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 16px;
+      display: none;
+      animation: fadeInSlide 0.3s ease;
+    }
+    .form-alert.visible { display: block; }
+    .form-alert.success {
+      background: #f0fdf4;
+      color: #15803d;
+      border: 1px solid #bbf7d0;
+    }
+    .form-alert.error {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+    .form-error-msg {
+      font-size: 0.75rem;
+      color: #b91c1c;
+      margin-top: 4px;
+      display: none;
+    }
+    .form-group.has-error input,
+    .form-group.has-error select,
+    .form-group.has-error textarea {
+      border-color: #b91c1c;
+    }
+    .form-group.has-error .form-error-msg { display: block; }
+
+    .form-hint {
+      font-size: 0.75rem;
+      color: var(--gray-400);
+      margin-top: 4px;
+    }
+
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.35);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <nav class="nav" id="nav" aria-label="Main">
+    <div class="nav-inner">
+      <a href="#hero" class="brand-logo" aria-label="XCSOURCE® home">
+        <img src="logo.png" width="300" height="100" alt="XCSOURCE Logo" decoding="async" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about" data-nav>About Us</a></li>
+        <li><a href="#mission" data-nav>Mission</a></li>
+        <li><a href="#brand" data-nav>Brand Story</a></li>
+        <li><a href="#cooperation" data-nav>Cooperation</a></li>
+        <li><a href="#contact" data-nav>Contact</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Contact Us</a>
+      <button type="button" class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <a href="#about" data-mnav>About Us</a>
+    <a href="#mission" data-mnav>Mission Statement</a>
+    <a href="#brand" data-mnav>Brand Story</a>
+    <a href="#cooperation" data-mnav>Cooperation</a>
+    <a href="#contact" data-mnav>Contact</a>
+  </div>
+
+  <main>
+    <header class="hero" id="hero">
+      <div class="container hero-inner">
+        <div class="reveal">
+          <p class="hero-kicker">About Us</p>
+          <h1 class="hero-title">
+            To be the <span class="accent">world-class Premium Solutions Specialist</span> in e-Commerce
+          </h1>
+          <p class="hero-lead">
+            XCSOURCE connects markets across borders — delivering premium value through a motivated, hardworking team and a belief that the world is one family.
+          </p>
+          <div class="hero-actions">
+            <a href="#mission" class="btn btn-primary">Mission Statement</a>
+            <a href="#brand" class="btn btn-outline">Brand Story</a>
+          </div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="hero-card">
+            <span class="brand-logo" style="pointer-events: none;">
+              <img src="logo.png" width="300" height="100" alt="" decoding="async" />
+            </span>
+            <p>
+              X for Cross, C for Countries. <strong>SOURCE</strong> for <strong>ReSources</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head center reveal">
+          <p class="section-tag">About Us</p>
+          <h2 class="section-title">World-class solutions for global e-Commerce</h2>
+          <p class="section-intro">
+            To be the world-class Premium Solutions Specialist in e-Commerce.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="mission">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-tag">Mission Statement</p>
+          <h2 class="section-title">What we stand for</h2>
+        </div>
+        <div class="mission-box reveal">
+          <h3>Mission Statement</h3>
+          <div class="prose">
+            <p>
+              <strong>XCSOURCE</strong>, the motivated hardworking team, provides the product with premium value to our online customers including consumers and business partners. With handsome profitability for sustainable growth, we believe in hiring for the potentials, training for the skills, aiming for the growth and sharing for the rewards.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="brand">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-tag">Brand Story</p>
+          <h2 class="section-title">Cross countries, shared resources</h2>
+        </div>
+        <div class="two-col">
+          <div class="prose reveal">
+            <p>
+              <strong>X</strong> for Cross, <strong>C</strong> for Countries. <strong>SOURCE</strong> for ReSources.
+            </p>
+            <p>
+              In the reality, our World is divided by countries and nations. We have boundaries and borders, mountains and oceans creating the distance. But, with the power of internet, we can now break down these barriers. In XCSOURCE, we believe the world is one big family. We can across the countries, sharing the resources. By the online business model, we can provide you the cross countries resources to fulfil your cross country needs.
+            </p>
+            <div class="tagline-bar">
+              <span>XCSOURCE</span>, your world-class Premium Solutions Specialist in e-Commerce.
+            </div>
+          </div>
+          <div class="brand-keys reveal">
+            <div class="brand-key">
+              <span class="k red">X</span>
+              <div>
+                <h4>Cross</h4>
+                <p>Breaking distance through digital commerce and connected supply.</p>
+              </div>
+            </div>
+            <div class="brand-key">
+              <span class="k">C</span>
+              <div>
+                <h4>Countries</h4>
+                <p>Operating with respect for markets, partners, and customers worldwide.</p>
+              </div>
+            </div>
+            <div class="brand-key">
+              <span class="k red">S</span>
+              <div>
+                <h4>SOURCE — ReSources</h4>
+                <p>Aggregating and delivering resources that match real cross-border needs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="coop-section" id="cooperation">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-tag">Website Cooperation</p>
+          <h2 class="section-title">Let's build something great together</h2>
+          <p class="section-intro">
+            Whether you represent a brand, platform, or creative team — we'd love to explore how we can create mutual value. Fill in the form and our team will respond within 1–2 business days.
+          </p>
+        </div>
+        <div class="coop-grid reveal">
+          <div class="coop-info">
+            <p>
+              XCSOURCE is actively seeking partnerships with brands, agencies, and technology providers in the cross-border e-Commerce space. We welcome all types of inquiries — from product collaboration to joint marketing campaigns.
+            </p>
+            <ul class="coop-features">
+              <li>Cross-border product partnerships</li>
+              <li>Co-branded campaigns &amp; content</li>
+              <li>Affiliate &amp; referral programs</li>
+              <li>Technology &amp; platform integrations</li>
+              <li>Wholesale &amp; distribution inquiries</li>
+            </ul>
+            <p style="margin-top: 24px; font-size: 0.875rem; color: var(--gray-400);">
+              Prefer email directly?&nbsp;
+              <a href="mailto:hujoey@qq.com" style="color: var(--brand-red); font-weight: 600; text-decoration: none;">
+                hujoey@qq.com
+              </a>
+            </p>
+          </div>
+
+          <div class="contact-form" id="contactFormWrap">
+            <form id="coopForm" novalidate>
+              <div class="form-row">
+                <div class="form-group" id="fg-name">
+                  <label for="f-name">Full Name *</label>
+                  <input type="text" id="f-name" name="name" placeholder="Your full name" autocomplete="name" />
+                  <span class="form-error-msg">Please enter your name.</span>
+                </div>
+                <div class="form-group" id="fg-email">
+                  <label for="f-email">Email Address *</label>
+                  <input type="email" id="f-email" name="email" placeholder="you@example.com" autocomplete="email" />
+                  <span class="form-error-msg">Please enter a valid email address.</span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="f-company">Company / Organization</label>
+                  <input type="text" id="f-company" name="company" placeholder="Where you work (optional)" autocomplete="organization" />
+                </div>
+                <div class="form-group">
+                  <label for="f-type">Cooperation Type *</label>
+                  <select id="f-type" name="inquiry_type">
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="Product Partnership">Product Partnership</option>
+                    <option value="Marketing Collaboration">Marketing Collaboration</option>
+                    <option value="Wholesale / Distribution">Wholesale / Distribution</option>
+                    <option value="Technology Integration">Technology Integration</option>
+                    <option value="Affiliate / Referral">Affiliate / Referral</option>
+                    <option value="Media / Press">Media / Press</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group" id="fg-message">
+                <label for="f-message">Your Message *</label>
+                <textarea id="f-message" name="message" rows="5" placeholder="Tell us about your idea, proposal, or question..."></textarea>
+                <span class="form-error-msg">Please enter your message (max 2000 characters).</span>
+                <span class="form-hint">Max 2000 characters.</span>
+              </div>
+
+              <div class="form-alert" id="formAlert" role="alert"></div>
+
+              <button type="submit" class="form-submit" id="f-submit">
+                <span id="submitLabel">Send Message</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="container">
+        <div class="cta-inner reveal">
+          <h2>Partner with XCSOURCE</h2>
+          <p>For business inquiries or cooperation, please reach out. We look forward to building value together.</p>
+          <a href="mailto:hujoey@qq.com" class="btn btn-primary">Email us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="#hero" class="brand-logo" aria-label="XCSOURCE® home">
+        <img src="logo.png" width="300" height="100" alt="XCSOURCE Logo" decoding="async" />
+      </a>
+      <ul class="footer-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#brand">Brand Story</a></li>
+        <li><a href="#cooperation">Cooperation</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 XCSOURCE. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.getElementById("nav");
+      var hamburger = document.getElementById("hamburger");
+      var mobileMenu = document.getElementById("mobileMenu");
+      function onScroll() {
+        nav.classList.toggle("scrolled", window.scrollY > 8);
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      hamburger.addEventListener("click", function () {
+        var open = mobileMenu.classList.toggle("open");
+        hamburger.classList.toggle("open", open);
+        hamburger.setAttribute("aria-expanded", open ? "true" : "false");
+        mobileMenu.hidden = !open;
+        document.body.style.overflow = open ? "hidden" : "";
+      });
+      document.querySelectorAll("[data-mnav]").forEach(function (a) {
+        a.addEventListener("click", function () {
+          mobileMenu.classList.remove("open");
+          hamburger.classList.remove("open");
+          mobileMenu.hidden = true;
+          hamburger.setAttribute("aria-expanded", "false");
+          document.body.style.overflow = "";
+        });
+      });
+
+      var navLinks = document.querySelectorAll("[data-nav]");
+      var spySections = document.querySelectorAll("main section[id]");
+      function spy() {
+        var y = window.scrollY + 100;
+        var aboutEl = document.getElementById("about");
+        if (aboutEl && y < aboutEl.offsetTop - 60) {
+          navLinks.forEach(function (l) { l.classList.remove("active"); });
+          return;
+        }
+        navLinks.forEach(function (l) { l.classList.remove("active"); });
+        spySections.forEach(function (sec) {
+          var top = sec.offsetTop;
+          var bottom = top + sec.offsetHeight;
+          var id = sec.id;
+          if (y >= top && y < bottom && id) {
+            var link = document.querySelector('.nav-links a[href="#' + id + '"]');
+            if (link) link.classList.add("active");
+          }
+        });
+      }
+      window.addEventListener("scroll", spy, { passive: true });
+      spy();
+
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      );
+      document.querySelectorAll(".reveal").forEach(function (el) {
+        io.observe(el);
+      });
+
+      // ─── Cooperation Form ───────────────────────────────────────────────
+      var form = document.getElementById("coopForm");
+      var alertBox = document.getElementById("formAlert");
+      var submitBtn = document.getElementById("f-submit");
+      var submitLabel = document.getElementById("submitLabel");
+
+      function showAlert(msg, type) {
+        alertBox.textContent = msg;
+        alertBox.className = "form-alert visible " + type;
+      }
+      function clearAlert() {
+        alertBox.className = "form-alert";
+      }
+      function setFieldError(id, hasError) {
+        document.getElementById("fg-" + id).className =
+          "form-group" + (hasError ? " has-error" : "");
+      }
+      function validateForm(data) {
+        var valid = true;
+        clearAlert();
+
+        if (!data.name || data.name.trim().length < 2) {
+          setFieldError("name", true); valid = false;
+        } else { setFieldError("name", false); }
+
+        var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!data.email || !emailRe.test(data.email.trim())) {
+          setFieldError("email", true); valid = false;
+        } else { setFieldError("email", false); }
+
+        if (!data.message || data.message.trim().length < 10) {
+          setFieldError("message", true); valid = false;
+        } else { setFieldError("message", false); }
+
+        return valid;
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        var formData = {
+          name: document.getElementById("f-name").value,
+          email: document.getElementById("f-email").value,
+          company: document.getElementById("f-company").value,
+          inquiry_type: document.getElementById("f-type").value,
+          message: document.getElementById("f-message").value,
+        };
+
+        if (!validateForm(formData)) {
+          showAlert("Please check the highlighted fields and try again.", "error");
+          return;
+        }
+
+        // loading state
+        submitBtn.disabled = true;
+        submitLabel.innerHTML = '<span class="spinner"></span> Sending...';
+        clearAlert();
+
+        fetch("/api/send-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        })
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            if (data.success) {
+              showAlert(data.message || "Message sent! We will reply soon.", "success");
+              form.reset();
+              ["name", "email", "message"].forEach(function (id) { setFieldError(id, false); });
+            } else {
+              showAlert(data.message || "Something went wrong. Please try again.", "error");
+            }
+          })
+          .catch(function () {
+            showAlert("Network error — please check your connection and try again.", "error");
+          })
+          .finally(function () {
+            submitBtn.disabled = false;
+            submitLabel.innerHTML = "Send Message";
+          });
+      });
+    })();
+  </script>
+</body>
+</html>
