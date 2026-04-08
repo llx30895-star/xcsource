@@ -132,26 +132,29 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 28px;
+      gap: 18px;
       padding: 80px 0 90px;
     }
 
-    .hero-logo {
-      width: min(40vw, 600px);
-      min-width: 260px;
-      filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.18));
+    .hero-kicker {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
     }
 
     .hero-title {
       margin: 0;
-      max-width: 14ch;
+      max-width: 12ch;
       text-align: center;
-      font-size: clamp(42px, 5.8vw, 88px);
+      font-size: clamp(48px, 6vw, 96px);
       font-weight: 600;
-      line-height: 1.08;
-      letter-spacing: 0.01em;
+      line-height: 1.04;
+      letter-spacing: -0.02em;
       color: #ffffff;
-      text-shadow: 0 10px 32px rgba(0,0,0,0.28);
+      text-shadow: 0 12px 36px rgba(0,0,0,0.32);
     }
 
     .section {
@@ -179,51 +182,57 @@
     .brands-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      max-width: 980px;
+      gap: 24px;
+      max-width: 1140px;
       margin: 0 auto;
     }
 
     .brand-card {
       background: #fff;
-      border-radius: 22px;
-      padding: 30px 20px;
+      border-radius: 24px;
+      padding: 44px 30px;
       border: 1px solid #ece7df;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 240px;
-      box-shadow: 0 12px 34px rgba(15, 23, 42, 0.06);
+      min-height: 320px;
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.06);
     }
 
     .brand-card img {
       width: 100%;
-      max-width: 250px;
-      max-height: 138px;
+      max-width: 310px;
+      max-height: 188px;
       object-fit: contain;
+      transform: scale(1.05);
+      transform-origin: center;
     }
 
     .products-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      max-width: 1120px;
+      gap: 18px;
+      max-width: 1220px;
       margin: 0 auto;
     }
 
     .product-card {
-      background: #f5f5f4;
-      border-radius: 16px;
+      background: #f7f7f5;
+      border-radius: 18px;
       overflow: hidden;
-      aspect-ratio: 1.08 / 1;
-      border: 1px solid #ededeb;
+      aspect-ratio: 1.14 / 1;
+      border: 1px solid #eceae5;
+      padding: 12px;
     }
 
     .product-card img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      object-position: center;
       transition: transform 0.35s ease;
+      background: #ffffff;
+      border-radius: 14px;
     }
 
     .product-card:hover img {
@@ -376,13 +385,17 @@
         background-position: center center;
       }
 
-      .hero-content { padding: 64px 0; gap: 18px; }
-      .hero-logo { width: min(62vw, 420px); min-width: 180px; }
-      .hero-title { font-size: clamp(34px, 9.8vw, 58px); }
+      .hero-content { padding: 64px 0; gap: 14px; }
+      .hero-kicker { font-size: 12px; letter-spacing: 0.22em; }
+      .hero-title { font-size: clamp(34px, 9.6vw, 58px); }
 
       .section { padding: 64px 0; }
       .brand-card,
       .contact-wrap { padding: 24px; }
+
+      .brand-card { min-height: 220px; }
+      .brand-card img { max-width: 240px; max-height: 150px; }
+      .product-card { aspect-ratio: 1 / 1; padding: 10px; }
 
       .brands-grid,
       .products-grid,
@@ -399,7 +412,7 @@
         <img src="assets/site-logo.png" alt="XCSOURCE logo" />
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#brands">BTANDS</a>
+        <a href="#brands">BRANDS</a>
         <a href="#products">PRODUCTS</a>
         <a href="#contact">CONTACT</a>
       </nav>
@@ -409,7 +422,7 @@
 
   <section class="hero" id="top">
     <div class="container hero-content">
-      <img class="hero-logo" src="assets/site-logo.png" alt="XCSOURCE logo" />
+      <p class="hero-kicker">HOME IMPROVEMENT</p>
       <h1 class="hero-title">Your home improvement partner</h1>
     </div>
   </section>
