@@ -1,4 +1,8 @@
 __pycache__/
+assets/products-original/
+assets/products-contact-sheet.jpg
+_compress_products.py
+_sheet.py
 *.pyc
 *.pyo
 *.pyd
