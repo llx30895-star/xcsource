@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>XCSOURCE | Home Improvement Partner</title>
-  <meta name="description" content="XCSOURCE corporate website with About Us, Brands, Products, and Contact sections." />
+  <meta name="description" content="XCSOURCE corporate website with Brands, Products, and Contact sections." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -63,7 +63,7 @@
     }
 
     .logo-wrap img {
-      height: 34px;
+      height: 36px;
       width: auto;
       object-fit: contain;
     }
@@ -109,8 +109,9 @@
       padding-top: var(--nav-h);
       display: flex;
       align-items: center;
+      justify-content: center;
       background:
-        linear-gradient(180deg, rgba(0,0,0,0.16) 0%, rgba(0,0,0,0.18) 20%, rgba(0,0,0,0.26) 100%),
+        linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.1) 100%),
         url('assets/hero-bg.png') center center / cover no-repeat;
       color: #fff;
     }
@@ -119,7 +120,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.08) 42%, rgba(0,0,0,0.16) 100%);
+      background: linear-gradient(90deg, rgba(0,0,0,0.16) 0%, rgba(0,0,0,0.04) 45%, rgba(0,0,0,0.12) 100%);
       pointer-events: none;
     }
 
@@ -127,18 +128,16 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 80px 0 90px;
     }
 
-    .hero-title {
-      margin: 0 auto;
-      max-width: 12ch;
-      font-size: clamp(40px, 6vw, 92px);
-      font-weight: 500;
-      line-height: 1.08;
-      letter-spacing: 0.02em;
-      text-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    .hero-logo {
+      width: min(36vw, 520px);
+      min-width: 220px;
+      filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.18));
     }
 
     .section {
@@ -159,96 +158,6 @@
       color: var(--accent);
     }
 
-    .section-head h2 {
-      margin: 0 0 14px;
-      font-size: clamp(32px, 4vw, 52px);
-      line-height: 1.1;
-      color: #111827;
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 28px;
-      align-items: stretch;
-    }
-
-    .about-card {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 42px;
-      box-shadow: var(--shadow);
-    }
-
-    .about-card h3,
-    .about-side h3 {
-      margin: 0 0 18px;
-      font-size: 28px;
-      color: #111827;
-    }
-
-    .about-card p,
-    .about-side p {
-      margin: 0 0 18px;
-      color: #4b5563;
-      font-size: 17px;
-    }
-
-    .about-points {
-      list-style: none;
-      padding: 0;
-      margin: 24px 0 0;
-      display: grid;
-      gap: 14px;
-    }
-
-    .about-points li {
-      position: relative;
-      padding-left: 20px;
-      color: #374151;
-      font-weight: 500;
-    }
-
-    .about-points li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 11px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .about-side {
-      background: linear-gradient(180deg, #f8fafc 0%, #f3f4f6 100%);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 42px;
-      display: grid;
-      gap: 24px;
-    }
-
-    .about-stat strong {
-      display: block;
-      font-size: 34px;
-      line-height: 1;
-      color: #111827;
-      margin-bottom: 8px;
-    }
-
-    .about-stat span {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
     .brands-section {
       background: var(--soft);
     }
@@ -262,43 +171,19 @@
     .brand-card {
       background: #fff;
       border-radius: 26px;
-      padding: 42px 32px 36px;
-      border: 1px solid var(--line);
-      text-align: center;
-      box-shadow: 0 16px 44px rgba(15, 23, 42, 0.06);
-    }
-
-    .brand-icon {
-      width: 72px;
-      height: 72px;
-      margin: 0 auto 18px;
-      border-radius: 20px;
-      background: #f9fafb;
+      padding: 38px 28px;
       border: 1px solid var(--line);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--accent);
-      font-size: 30px;
-    }
-
-    .brand-card h3 {
-      margin: 0 0 10px;
-      font-size: 24px;
-      color: #111827;
-    }
-
-    .brand-card p {
-      margin: 0 0 28px;
-      color: var(--muted);
-      min-height: 52px;
+      min-height: 280px;
+      box-shadow: 0 16px 44px rgba(15, 23, 42, 0.06);
     }
 
     .brand-card img {
       width: 100%;
-      max-width: 240px;
-      height: 90px;
-      margin: 0 auto;
+      max-width: 280px;
+      max-height: 160px;
       object-fit: contain;
     }
 
@@ -454,14 +339,9 @@
     }
 
     @media (max-width: 1080px) {
-      .about-grid,
       .brands-grid,
       .products-grid {
         grid-template-columns: 1fr 1fr;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
       }
     }
 
@@ -469,10 +349,9 @@
       :root { --nav-h: 74px; }
 
       .container { padding: 0 18px; }
-
       .nav-links { display: none; }
       .nav-btn { min-width: 116px; height: 42px; font-size: 14px; }
-      .logo-wrap img { height: 28px; }
+      .logo-wrap img { height: 30px; }
 
       .hero {
         min-height: 72vh;
@@ -480,11 +359,9 @@
       }
 
       .hero-content { padding: 64px 0; }
-      .hero-title { font-size: clamp(34px, 10vw, 58px); }
+      .hero-logo { width: min(62vw, 360px); min-width: 180px; }
 
       .section { padding: 76px 0; }
-      .about-card,
-      .about-side,
       .brand-card,
       .contact-wrap { padding: 24px; }
 
@@ -499,11 +376,10 @@
 <body>
   <header class="nav">
     <div class="container nav-inner">
-      <a class="logo-wrap" href="#aboutus" aria-label="XCSOURCE home">
+      <a class="logo-wrap" href="#top" aria-label="XCSOURCE home">
         <img src="assets/site-logo.png" alt="XCSOURCE logo" />
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#aboutus">ABOUTUS</a>
         <a href="#brands">BTANDS</a>
         <a href="#products">PRODUCTS</a>
         <a href="#contact">CONTACT</a>
@@ -512,63 +388,9 @@
     </div>
   </header>
 
-  <section class="hero" id="aboutus">
+  <section class="hero" id="top">
     <div class="container hero-content">
-      <h1 class="hero-title">Your home improvement partner</h1>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">ABOUTUS</p>
-        <h2>Built for modern living, designed for lasting value.</h2>
-        <p>
-          XCSOURCE focuses on practical, design-led home solutions that improve the way people live, organize, and enjoy their spaces.
-          We combine product development, visual presentation, and global e-commerce experience to create dependable everyday value.
-        </p>
-      </div>
-
-      <div class="about-grid">
-        <div class="about-card">
-          <h3>Who We Are</h3>
-          <p>
-            We work across home, lifestyle, and related product categories with an emphasis on clean aesthetics, functional detail,
-            and user-friendly design. Every collection is shaped around real household needs and long-term usability.
-          </p>
-          <p>
-            From concept selection to product presentation, we care about clarity, consistency, and trust — helping customers find
-            the right products for better homes and better daily routines.
-          </p>
-          <ul class="about-points">
-            <li>Design-oriented home and lifestyle solutions</li>
-            <li>Clear product communication for global online markets</li>
-            <li>Reliable visual standards and brand consistency</li>
-            <li>Focused on comfort, practicality, and customer value</li>
-          </ul>
-        </div>
-
-        <div class="about-side">
-          <div>
-            <h3>What We Deliver</h3>
-            <p>
-              A streamlined portfolio centered on home improvement and daily living, presented with a polished international brand image.
-            </p>
-          </div>
-          <div class="about-stat">
-            <strong>Design</strong>
-            <span>Thoughtful product selection with a modern visual language.</span>
-          </div>
-          <div class="about-stat">
-            <strong>Quality</strong>
-            <span>Carefully presented collections designed to feel dependable and refined.</span>
-          </div>
-          <div class="about-stat">
-            <strong>Service</strong>
-            <span>Open communication for partnership, inquiry, and business cooperation.</span>
-          </div>
-        </div>
-      </div>
+      <img class="hero-logo" src="assets/site-logo.png" alt="XCSOURCE logo" />
     </div>
   </section>
 
@@ -576,31 +398,18 @@
     <div class="container">
       <div class="section-head">
         <p class="eyebrow">BTANDS</p>
-        <h2>Three focused brands, one consistent standard.</h2>
-        <p>
-          Each brand serves a distinct product direction while sharing the same commitment to useful design, visual clarity, and dependable quality.
-        </p>
       </div>
 
       <div class="brands-grid">
         <article class="brand-card">
-          <div class="brand-icon">✦</div>
-          <h3>IKKLE</h3>
-          <p>Smart and playful essentials created for modern everyday living.</p>
           <img src="assets/brands/ikkle.png" alt="IKKLE brand logo" />
         </article>
 
         <article class="brand-card">
-          <div class="brand-icon">◆</div>
-          <h3>MICEPLAY</h3>
-          <p>Functional lifestyle products with a clean, practical, and accessible feel.</p>
           <img src="assets/brands/miceplay.png" alt="MICEPLAY brand logo" />
         </article>
 
         <article class="brand-card">
-          <div class="brand-icon">●</div>
-          <h3>SOULHAND</h3>
-          <p>Comfort-driven home selections with a warm and contemporary identity.</p>
           <img src="assets/brands/soulhand.png" alt="SOULHAND brand logo" />
         </article>
       </div>
@@ -609,14 +418,6 @@
 
   <section class="section" id="products">
     <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">PRODUCTS</p>
-        <h2>Curated product presentation.</h2>
-        <p>
-          A clean 3-column layout showcasing the full product image set you provided.
-        </p>
-      </div>
-
       <div class="products-grid">
         <div class="product-card"><img src="assets/products/IK200101-A-16-1-7.jpg" alt="Product 01" /></div>
         <div class="product-card"><img src="assets/products/IK2036-A-16-mian01.jpg" alt="Product 02" /></div>
@@ -629,13 +430,13 @@
         <div class="product-card"><img src="assets/products/MC100101-A-16-1-2-1.jpg" alt="Product 09" /></div>
         <div class="product-card"><img src="assets/products/SH413-A-16-main1.jpg" alt="Product 10" /></div>
         <div class="product-card"><img src="assets/products/SM100102-A-16-1-1.jpg" alt="Product 11" /></div>
-        <div class="product-card"><img src="assets/products/产品 1.jpg" alt="Product 12" /></div>
-        <div class="product-card"><img src="assets/products/产品-2.jpg" alt="Product 13" /></div>
-        <div class="product-card"><img src="assets/products/产品-6.jpg" alt="Product 14" /></div>
-        <div class="product-card"><img src="assets/products/详情图-3.jpg" alt="Product 15" /></div>
-        <div class="product-card"><img src="assets/products/详情图-9.jpg" alt="Product 16" /></div>
-        <div class="product-card"><img src="assets/products/详情图-10.jpg" alt="Product 17" /></div>
-        <div class="product-card"><img src="assets/products/详情图-11.jpg" alt="Product 18" /></div>
+        <div class="product-card"><img src="assets/products/product-12.jpg" alt="Product 12" /></div>
+        <div class="product-card"><img src="assets/products/product-13.jpg" alt="Product 13" /></div>
+        <div class="product-card"><img src="assets/products/product-14.jpg" alt="Product 14" /></div>
+        <div class="product-card"><img src="assets/products/product-15.jpg" alt="Product 15" /></div>
+        <div class="product-card"><img src="assets/products/product-16.jpg" alt="Product 16" /></div>
+        <div class="product-card"><img src="assets/products/product-17.jpg" alt="Product 17" /></div>
+        <div class="product-card"><img src="assets/products/product-18.jpg" alt="Product 18" /></div>
       </div>
     </div>
   </section>
@@ -644,10 +445,6 @@
     <div class="container">
       <div class="section-head">
         <p class="eyebrow">CONTACT</p>
-        <h2>Let’s start the conversation.</h2>
-        <p>
-          Please leave your inquiry below and our team will get back to you as soon as possible.
-        </p>
       </div>
 
       <div class="contact-wrap">
