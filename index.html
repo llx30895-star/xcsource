@@ -63,7 +63,7 @@
     }
 
     .logo-wrap img {
-      height: 36px;
+      height: 54px;
       width: auto;
       object-fit: contain;
     }
@@ -129,75 +129,93 @@
       z-index: 1;
       width: 100%;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 28px;
       padding: 80px 0 90px;
     }
 
     .hero-logo {
-      width: min(36vw, 520px);
-      min-width: 220px;
+      width: min(40vw, 600px);
+      min-width: 260px;
       filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.18));
     }
 
+    .hero-title {
+      margin: 0;
+      max-width: 14ch;
+      text-align: center;
+      font-size: clamp(42px, 5.8vw, 88px);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: 0.01em;
+      color: #ffffff;
+      text-shadow: 0 10px 32px rgba(0,0,0,0.28);
+    }
+
     .section {
-      padding: 110px 0;
+      padding: 86px 0;
     }
 
     .section-head {
       max-width: 760px;
-      margin: 0 auto 52px;
+      margin: 0 auto 34px;
       text-align: center;
     }
 
     .eyebrow {
-      margin: 0 0 12px;
-      font-size: 14px;
+      margin: 0;
+      font-size: 28px;
       font-weight: 700;
-      letter-spacing: 0.18em;
-      color: var(--accent);
+      letter-spacing: 0.14em;
+      color: #111827;
     }
 
     .brands-section {
-      background: var(--soft);
+      background: #f6f4ef;
     }
 
     .brands-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 26px;
+      gap: 18px;
+      max-width: 980px;
+      margin: 0 auto;
     }
 
     .brand-card {
       background: #fff;
-      border-radius: 26px;
-      padding: 38px 28px;
-      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 30px 20px;
+      border: 1px solid #ece7df;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 280px;
-      box-shadow: 0 16px 44px rgba(15, 23, 42, 0.06);
+      min-height: 240px;
+      box-shadow: 0 12px 34px rgba(15, 23, 42, 0.06);
     }
 
     .brand-card img {
       width: 100%;
-      max-width: 280px;
-      max-height: 160px;
+      max-width: 250px;
+      max-height: 138px;
       object-fit: contain;
     }
 
     .products-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
+      gap: 16px;
+      max-width: 1120px;
+      margin: 0 auto;
     }
 
     .product-card {
       background: #f5f5f4;
-      border-radius: 18px;
+      border-radius: 16px;
       overflow: hidden;
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 1.08 / 1;
       border: 1px solid #ededeb;
     }
 
@@ -351,17 +369,18 @@
       .container { padding: 0 18px; }
       .nav-links { display: none; }
       .nav-btn { min-width: 116px; height: 42px; font-size: 14px; }
-      .logo-wrap img { height: 30px; }
+      .logo-wrap img { height: 40px; }
 
       .hero {
         min-height: 72vh;
         background-position: center center;
       }
 
-      .hero-content { padding: 64px 0; }
-      .hero-logo { width: min(62vw, 360px); min-width: 180px; }
+      .hero-content { padding: 64px 0; gap: 18px; }
+      .hero-logo { width: min(62vw, 420px); min-width: 180px; }
+      .hero-title { font-size: clamp(34px, 9.8vw, 58px); }
 
-      .section { padding: 76px 0; }
+      .section { padding: 64px 0; }
       .brand-card,
       .contact-wrap { padding: 24px; }
 
@@ -391,13 +410,14 @@
   <section class="hero" id="top">
     <div class="container hero-content">
       <img class="hero-logo" src="assets/site-logo.png" alt="XCSOURCE logo" />
+      <h1 class="hero-title">Your home improvement partner</h1>
     </div>
   </section>
 
   <section class="section brands-section" id="brands">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">BTANDS</p>
+        <p class="eyebrow">BRANDS</p>
       </div>
 
       <div class="brands-grid">
@@ -418,6 +438,10 @@
 
   <section class="section" id="products">
     <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">PRODUCTS</p>
+      </div>
+
       <div class="products-grid">
         <div class="product-card"><img src="assets/products/IK200101-A-16-1-7.jpg" alt="Product 01" /></div>
         <div class="product-card"><img src="assets/products/IK2036-A-16-mian01.jpg" alt="Product 02" /></div>
