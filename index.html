@@ -132,29 +132,20 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 18px;
+      gap: 0;
       padding: 80px 0 90px;
-    }
-
-    .hero-kicker {
-      margin: 0;
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.9);
     }
 
     .hero-title {
       margin: 0;
       max-width: 12ch;
       text-align: center;
-      font-size: clamp(48px, 6vw, 96px);
+      font-size: clamp(50px, 6vw, 98px);
       font-weight: 600;
-      line-height: 1.04;
-      letter-spacing: -0.02em;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
       color: #ffffff;
-      text-shadow: 0 12px 36px rgba(0,0,0,0.32);
+      text-shadow: 0 14px 38px rgba(0,0,0,0.34);
     }
 
     .section {
@@ -182,47 +173,71 @@
     .brands-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      max-width: 1140px;
+      gap: 28px;
+      max-width: 1180px;
       margin: 0 auto;
+      align-items: start;
     }
 
     .brand-card {
-      background: #fff;
-      border-radius: 24px;
-      padding: 44px 30px;
-      border: 1px solid #ece7df;
+      position: relative;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 28px;
+      padding: 52px 36px;
+      border: 1px solid rgba(236, 231, 223, 0.9);
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 320px;
-      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.06);
+      min-height: 340px;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .brand-card:nth-child(2) {
+      transform: translateY(-14px);
+    }
+
+    .brand-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 72px rgba(15, 23, 42, 0.12);
     }
 
     .brand-card img {
       width: 100%;
-      max-width: 310px;
-      max-height: 188px;
+      max-width: 320px;
+      max-height: 196px;
       object-fit: contain;
-      transform: scale(1.05);
+      transform: scale(1.08);
       transform-origin: center;
     }
 
     .products-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      max-width: 1220px;
+      gap: 22px;
+      max-width: 1240px;
       margin: 0 auto;
     }
 
     .product-card {
-      background: #f7f7f5;
-      border-radius: 18px;
+      background: linear-gradient(180deg, #fafaf8 0%, #f3f1ed 100%);
+      border-radius: 22px;
       overflow: hidden;
       aspect-ratio: 1.14 / 1;
       border: 1px solid #eceae5;
-      padding: 12px;
+      padding: 14px;
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:nth-child(3n+2) {
+      transform: translateY(10px);
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.1);
     }
 
     .product-card img {
@@ -232,7 +247,7 @@
       object-position: center;
       transition: transform 0.35s ease;
       background: #ffffff;
-      border-radius: 14px;
+      border-radius: 16px;
     }
 
     .product-card:hover img {
@@ -240,13 +255,23 @@
     }
 
     .contact-wrap {
-      background: linear-gradient(180deg, #f7f7f7 0%, #f3f4f6 100%);
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      padding: 34px;
-      max-width: 920px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(250,248,244,0.98) 100%);
+      border: 1px solid rgba(228, 223, 213, 0.95);
+      border-radius: 30px;
+      padding: 44px;
+      max-width: 1080px;
       margin: 0 auto;
-      box-shadow: var(--shadow);
+      box-shadow: 0 28px 70px rgba(15, 23, 42, 0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    .contact-intro {
+      max-width: 680px;
+      margin: 0 auto 28px;
+      text-align: center;
+      color: #6b7280;
+      font-size: 17px;
+      line-height: 1.7;
     }
 
     .contact-form {
@@ -275,14 +300,14 @@
     .form-group select,
     .form-group textarea {
       width: 100%;
-      border: 1px solid #d9dde5;
-      border-radius: 12px;
-      background: #fff;
-      padding: 15px 16px;
+      border: 1px solid #ddd8ce;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.96);
+      padding: 16px 18px;
       font: inherit;
       color: #111827;
       outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
 
     .form-group input:focus,
@@ -290,6 +315,7 @@
     .form-group textarea:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 4px rgba(211, 18, 43, 0.08);
+      transform: translateY(-1px);
     }
 
     .form-group textarea {
@@ -342,14 +368,15 @@
 
     .submit-btn {
       border: 0;
-      border-radius: 12px;
-      height: 52px;
+      border-radius: 14px;
+      height: 56px;
       background: var(--accent);
       color: #fff;
       font-size: 18px;
       font-weight: 700;
       cursor: pointer;
       transition: 0.2s ease;
+      box-shadow: 0 14px 34px rgba(211, 18, 43, 0.2);
     }
 
     .submit-btn:disabled {
@@ -385,17 +412,16 @@
         background-position: center center;
       }
 
-      .hero-content { padding: 64px 0; gap: 14px; }
-      .hero-kicker { font-size: 12px; letter-spacing: 0.22em; }
+      .hero-content { padding: 64px 0; gap: 0; }
       .hero-title { font-size: clamp(34px, 9.6vw, 58px); }
 
       .section { padding: 64px 0; }
       .brand-card,
       .contact-wrap { padding: 24px; }
 
-      .brand-card { min-height: 220px; }
+      .brand-card { min-height: 220px; transform: none !important; }
       .brand-card img { max-width: 240px; max-height: 150px; }
-      .product-card { aspect-ratio: 1 / 1; padding: 10px; }
+      .product-card { aspect-ratio: 1 / 1; padding: 10px; transform: none !important; }
 
       .brands-grid,
       .products-grid,
@@ -422,7 +448,6 @@
 
   <section class="hero" id="top">
     <div class="container hero-content">
-      <p class="hero-kicker">HOME IMPROVEMENT</p>
       <h1 class="hero-title">Your home improvement partner</h1>
     </div>
   </section>
@@ -485,6 +510,10 @@
       </div>
 
       <div class="contact-wrap">
+        <div class="contact-intro">
+          For partnerships, product inquiries, or business cooperation, leave us a message and our team will get back to you as soon as possible.
+        </div>
+
         <form class="contact-form" id="coopForm" novalidate>
           <div class="form-row">
             <div class="form-group" id="fg-name">
