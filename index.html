@@ -749,62 +749,50 @@
     </div>
   </section>
 
-  <section class="section brands-section" id="contact">
+  <section class="section brands-section" id="contact" style="padding: 80px 0; background: linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%);">
     <div class="container">
-      <div class="section-shell contact-shell">
-        <div class="section-head">
-          <p class="eyebrow">CONTACT</p>
+      <div class="section-shell contact-shell" style="text-align: center; max-width: 600px; margin: 0 auto;">
+        <div class="section-head" style="margin-bottom: 40px;">
+          <p class="eyebrow" style="font-size: 13px; font-weight: 600; letter-spacing: 0.2em; color: #d3122b; margin-bottom: 12px;">CONTACT</p>
+          <h2 style="font-size: 36px; font-weight: 700; color: #1f2937; margin: 0; line-height: 1.2;">Let's Connect</h2>
         </div>
 
-        <div class="contact-wrap">
-          <div class="contact-intro">
-            <div class="contact-address-info">
-              <h3>Hong Kong Office</h3>
-              <p>7/F, YEUNG YIU CHUNG (NO.8) IND. BLDG<br/>20 WANG HOI ROAD<br/>KOWLOON BAY, HONG KONG</p>
+        <div class="contact-wrap" style="display: flex; flex-direction: column; align-items: center; gap: 32px;">
+          <div style="display: flex; gap: 48px; justify-content: center; flex-wrap: wrap;">
+            <div class="contact-address-info" style="text-align: center;">
+              <h3 style="font-size: 14px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Hong Kong</h3>
+              <p style="font-size: 15px; color: #374151; line-height: 1.7; margin: 0;">7/F, YEUNG YIU CHUNG (NO.8) IND. BLDG<br/>20 WANG HOI ROAD, KOWLOON BAY</p>
             </div>
-            <div class="contact-address-info">
-              <h3>Email</h3>
-              <p>info@xcsource.com</p>
+            <div class="contact-address-info" style="text-align: center;">
+              <h3 style="font-size: 14px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Email</h3>
+              <p style="font-size: 15px; color: #374151; line-height: 1.7; margin: 0;">info@xcsource.com</p>
             </div>
-            <button type="button" class="submit-btn" onclick="document.getElementById('contactModal').classList.add('active'); document.body.style.overflow='hidden';">Contact Us</button>
           </div>
+          <button type="button" class="submit-btn" onclick="document.getElementById('contactModal').classList.add('active'); document.body.style.overflow='hidden';" style="padding: 16px 40px; background: #d3122b; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(211,18,43,0.3);">Send us a Message</button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Contact Modal with Form -->
-  <div class="modal-overlay" id="contactModal">
-    <div class="modal-content" style="max-width: 480px; padding: 32px;">
-      <button class="modal-close" onclick="document.getElementById('contactModal').classList.remove('active'); document.body.style.overflow='';" style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border: none; background: transparent; font-size: 24px; cursor: pointer; color: #666;">&times;</button>
-      <h2 class="modal-title" style="margin: 0 0 24px 0; font-size: 24px; font-weight: 700; color: #1f2937;">Get in Touch</h2>
-      <p style="margin: 0 0 24px 0; color: #6b7280; font-size: 14px;">Send us a message and we'll respond within 24 hours.</p>
-      <form class="contact-form" id="contactForm" action="https://formspree.io/f/xgopljzn" method="POST" style="display: flex; flex-direction: column; gap: 16px;">
+  <div class="modal-overlay" id="contactModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; justify-content: center; align-items: center;">
+    <div class="modal-content" style="background: #fff; border-radius: 16px; padding: 40px; max-width: 480px; width: 90%; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.2);">
+      <button onclick="document.getElementById('contactModal').style.display='none'; document.body.style.overflow='';" style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border: none; background: transparent; font-size: 24px; cursor: pointer; color: #9ca3af;">&times;</button>
+      <h2 style="margin: 0 0 8px 0; font-size: 24px; font-weight: 700; color: #1f2937; text-align: center;">Send us a Message</h2>
+      <p style="margin: 0 0 24px 0; color: #6b7280; font-size: 14px; text-align: center;">We'll respond within 24 hours</p>
+      <form action="https://formspree.io/f/xgopljzn" method="POST" style="display: flex; flex-direction: column; gap: 16px;">
         <div style="display: flex; gap: 12px;">
-          <div class="form-group" id="fg-name" style="flex: 1;">
-            <label for="f-name" style="display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; color: #374151;">Name *</label>
-            <input id="f-name" name="name" type="text" placeholder="Your name" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: #fff;" />
-          </div>
-          <div class="form-group" id="fg-email" style="flex: 1;">
-            <label for="f-email" style="display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; color: #374151;">Email *</label>
-            <input id="f-email" name="email" type="email" placeholder="you@email.com" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: #fff;" />
-          </div>
+          <input name="name" type="text" placeholder="Your name" required style="flex: 1; padding: 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px;" />
+          <input name="email" type="email" placeholder="Email address" required style="flex: 1; padding: 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px;" />
         </div>
-        <div class="form-group" id="fg-type">
-            <label for="f-type" style="display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; color: #374151;">Subject</label>
-            <select id="f-type" name="inquiry_type" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: #fff;">
-              <option>General Inquiry</option>
-              <option>Business Cooperation</option>
-              <option>Product Inquiry</option>
-              <option>Partnership</option>
-            </select>
-        </div>
-        <div class="form-group" id="fg-message">
-          <label for="f-message" style="display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; color: #374151;">Message *</label>
-          <textarea id="f-message" name="message" placeholder="Your message..." style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: #fff; min-height: 100px; resize: vertical;"></textarea>
-        </div>
-        <div class="form-alert" id="formAlert" role="alert" style="padding: 12px; border-radius: 8px; display: none; font-size: 14px;"></div>
-        <button type="submit" class="submit-btn" id="f-submit" style="width: 100%; padding: 14px; background: #d3122b; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.2s;">Send Message</button>
+        <select name="inquiry_type" style="padding: 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; background: #fff;">
+          <option>General Inquiry</option>
+          <option>Business Cooperation</option>
+          <option>Product Inquiry</option>
+          <option>Partnership</option>
+        </select>
+        <textarea name="message" placeholder="Your message..." required style="padding: 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; min-height: 120px; resize: none; font-family: inherit;"></textarea>
+        <button type="submit" style="padding: 16px; background: #d3122b; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.2s;">Send Message</button>
       </form>
     </div>
   </div>
