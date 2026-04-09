@@ -766,7 +766,7 @@
               <h3>Email</h3>
               <p>info@xcsource.com</p>
             </div>
-            <button type="button" class="submit-btn" onclick="openContactModal()">Contact Us</button>
+            <button type="button" class="submit-btn" onclick="document.getElementById('contactModal').classList.add('active'); document.body.style.overflow='hidden';">Contact Us</button>
           </div>
         </div>
       </div>
@@ -776,7 +776,7 @@
   <!-- Contact Modal with Form -->
   <div class="modal-overlay" id="contactModal">
     <div class="modal-content">
-      <button class="modal-close" onclick="closeContactModal()">&times;</button>
+      <button class="modal-close" onclick="document.getElementById('contactModal').classList.remove('active'); document.body.style.overflow='';">&times;</button>
       <h2 class="modal-title">Contact Us</h2>
       <form class="contact-form" id="contactForm" novalidate>
         <div class="form-row">
