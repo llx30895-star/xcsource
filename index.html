@@ -911,33 +911,23 @@
         submitBtn.disabled = true;
         submitBtn.textContent = "Sending...";
         
-        // Using Formspree with proper endpoint
+        // Send email directly using mailto as primary method
         try {
-          // Formspree form submission - using JSON format
-          var payload = {
-            name: formData.name,
-            email: formData.email,
-            company: formData.company,
-            inquiry_type: formData.inquiry_type,
-            message: formData.message,
-            _replyto: formData.email
-          };
+          // Using mailto link for direct email
+          var subject = encodeURIComponent("Contact from " + formData.name + " - " + formData.inquiry_type);
+          var body = encodeURIComponent(
+            "Name: " + formData.name + "\n" +
+            "Email: " + formData.email + "\n" +
+            "Company: " + formData.company + "\n" +
+            "Inquiry Type: " + formData.inquiry_type + "\n\n" +
+            "Message:\n" + formData.message
+          );
           
-          var res = await fetch("https://formspree.io/f/xpwzgvjq", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-            },
-            body: JSON.stringify(payload)
-          });
+          // Open email client
+          window.location.href = "mailto:hujoey@qq.com?subject=" + subject + "&body=" + body;
           
-          if (res.ok) {
-            showAlert("success", "Message sent! We'll get back to you soon.");
-            form.reset();
-          } else {
-            showAlert("error", "Failed to send. Please try again.");
-          }
+          showAlert("success", "Email client opened! Please send the email.");
+          form.reset();
         } catch (err) {
           showAlert("error", "Error: " + err.message);
         } finally {
