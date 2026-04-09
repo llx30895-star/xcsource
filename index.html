@@ -407,6 +407,23 @@
       font-size: 15px;
       color: var(--text);
     }
+    .contact-address-info {
+      margin-bottom: 24px;
+    }
+    .contact-address-info h3 {
+      margin: 0 0 8px 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .contact-address-info p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text);
+    }
       background:
         radial-gradient(circle at top center, rgba(255,255,255,0.96), rgba(255,255,255,0.82) 32%, rgba(247,243,235,0.98) 100%),
         linear-gradient(180deg, #f7f3eb 0%, #efe8dc 100%);
@@ -613,9 +630,9 @@
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#brands">BRANDS</a>
         <a href="#products">PRODUCTS</a>
-        <a href="javascript:void(0)" onclick="openContactModal()">CONTACT</a>
+        <a href="#contact">CONTACT</a>
       </nav>
-      <a class="nav-btn" href="javascript:void(0)" onclick="openContactModal()">Contact Us</a>
+      <a class="nav-btn" href="#contact">Contact Us</a>
     </div>
   </header>
 
@@ -689,10 +706,20 @@
 
         <div class="contact-wrap">
           <div class="contact-intro">
-            For partnerships, product inquiries, or business cooperation, leave us a message and our team will get back to you as soon as possible.
+            <div class="contact-address-info">
+              <h3>Hong Kong Office</h3>
+              <p>7/F, YEUNG YIU CHUNG (NO.8) IND. BLDG<br/>20 WANG HOI ROAD<br/>KOWLOON BAY, HONG KONG</p>
+            </div>
+            <div class="contact-address-info">
+              <h3>Email</h3>
+              <p>info@xcsource.com</p>
+            </div>
+            <button type="button" class="submit-btn" onclick="openContactModal()">Contact Us</button>
           </div>
-
-          <form class="contact-form" id="coopForm" novalidate>
+        </div>
+      </div>
+    </div>
+  </section>
             <div class="form-row">
               <div class="form-group" id="fg-name">
                 <label for="f-name">Full Name *</label>
@@ -738,19 +765,49 @@
     </div>
   </section>
 
-  <!-- Contact Modal -->
+  <!-- Contact Modal with Form -->
   <div class="modal-overlay" id="contactModal">
     <div class="modal-content">
       <button class="modal-close" onclick="closeContactModal()">&times;</button>
       <h2 class="modal-title">Contact Us</h2>
-      <div class="contact-address">
-        <h3>Hong Kong Office</h3>
-        <p>7/F, YEUNG YIU CHUNG (NO.8) IND. BLDG<br/>20 WANG HOI ROAD<br/>KOWLOON BAY, HONG KONG</p>
-      </div>
-      <div class="contact-address">
-        <h3>Email</h3>
-        <p>info@xcsource.com</p>
-      </div>
+      <form class="contact-form" id="modalForm" novalidate>
+        <div class="form-row">
+          <div class="form-group" id="fg-name">
+            <label for="mf-name">Full Name *</label>
+            <input id="mf-name" name="name" type="text" placeholder="Your full name" />
+            <span class="form-error-msg">Please enter your name.</span>
+          </div>
+          <div class="form-group" id="fg-email">
+            <label for="mf-email">Email Address *</label>
+            <input id="mf-email" name="email" type="email" placeholder="you@example.com" />
+            <span class="form-error-msg">Please enter a valid email address.</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="mf-company">Company / Organization</label>
+            <input id="mf-company" name="company" type="text" placeholder="Where you work (optional)" />
+          </div>
+          <div class="form-group" id="fg-type">
+            <label for="mf-type">Cooperation Type *</label>
+            <select id="mf-type" name="inquiry_type">
+              <option>General Inquiry</option>
+              <option>Business Cooperation</option>
+              <option>Product Inquiry</option>
+              <option>Media & Partnership</option>
+            </select>
+            <span class="form-error-msg">Please select an inquiry type.</span>
+          </div>
+        </div>
+        <div class="form-group" id="fg-message">
+          <label for="mf-message">Your Message *</label>
+          <textarea id="mf-message" name="message" placeholder="Tell us about your idea, proposal, or question..."></textarea>
+          <span class="form-error-msg">Please enter your message (max 2000 characters).</span>
+          <span class="form-hint">Max 2000 characters.</span>
+        </div>
+        <div class="form-alert" id="modalFormAlert" role="alert"></div>
+        <button type="submit" class="submit-btn" id="mf-submit">Send Message</button>
+      </form>
     </div>
   </div>
 
@@ -789,6 +846,79 @@
         closeContactModal();
       }
     });
+
+    // Modal Form Handling
+    (function () {
+      var modalForm = document.getElementById("modalForm");
+      if (!modalForm) return;
+      
+      var alertBox = document.getElementById("modalFormAlert");
+      var submitBtn = document.getElementById("mf-submit");
+
+      function showAlert(type, message) {
+        alertBox.textContent = message;
+        alertBox.className = "form-alert visible " + type;
+      }
+
+      function clearAlert() {
+        alertBox.textContent = "";
+        alertBox.className = "form-alert";
+      }
+
+      function setGroupError(id, hasError) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.className = "form-group" + (hasError ? " has-error" : "");
+      }
+
+      function validateForm(data) {
+        var ok = true;
+        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
+        setGroupError("fg-name", !data.name);
+        setGroupError("fg-email", !emailOk);
+        setGroupError("fg-message", !data.message || data.message.length > 2000);
+        if (!data.name || !emailOk || !data.message || data.message.length > 2000) {
+          ok = false;
+        }
+        return ok;
+      }
+
+      modalForm.addEventListener("submit", async function(e) {
+        e.preventDefault();
+        clearAlert();
+        var formData = {
+          name: document.getElementById("mf-name").value.trim(),
+          email: document.getElementById("mf-email").value.trim(),
+          company: document.getElementById("mf-company").value.trim(),
+          inquiry_type: document.getElementById("mf-type").value,
+          message: document.getElementById("mf-message").value.trim()
+        };
+        if (!validateForm(formData)) {
+          showAlert("error", "Please complete the required fields correctly.");
+          return;
+        }
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+        try {
+          var res = await fetch("/api/send-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData)
+          });
+          if (res.ok) {
+            showAlert("success", "Message sent! We'll get back to you soon.");
+            modalForm.reset();
+          } else {
+            showAlert("error", "Failed to send. Please try again.");
+          }
+        } catch (err) {
+          showAlert("error", "Network error. Please try again.");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send Message";
+        }
+      });
+    })();
 
     (function () {
       var form = document.getElementById("coopForm");
