@@ -334,7 +334,79 @@
       transform: scale(1.03);
     }
 
-    .contact-shell {
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+    .modal-content {
+      background: #fff;
+      border-radius: 22px;
+      padding: 48px;
+      max-width: 520px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.active .modal-content {
+      transform: scale(1);
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: #f0f0f0;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-close:hover {
+      background: #e0e0e0;
+    }
+    .modal-title {
+      margin: 0 0 32px 0;
+      font-size: 28px;
+      font-weight: 700;
+    }
+    .contact-address {
+      margin-bottom: 32px;
+    }
+    .contact-address h3 {
+      margin: 0 0 12px 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .contact-address p {
+      margin: 0;
+      line-height: 1.7;
+      font-size: 15px;
+      color: var(--text);
+    }
       background:
         radial-gradient(circle at top center, rgba(255,255,255,0.96), rgba(255,255,255,0.82) 32%, rgba(247,243,235,0.98) 100%),
         linear-gradient(180deg, #f7f3eb 0%, #efe8dc 100%);
@@ -541,9 +613,9 @@
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#brands">BRANDS</a>
         <a href="#products">PRODUCTS</a>
-        <a href="#contact">CONTACT</a>
+        <a href="javascript:void(0)" onclick="openContactModal()">CONTACT</a>
       </nav>
-      <a class="nav-btn" href="#contact">Contact Us</a>
+      <a class="nav-btn" href="javascript:void(0)" onclick="openContactModal()">Contact Us</a>
     </div>
   </header>
 
@@ -666,11 +738,58 @@
     </div>
   </section>
 
+  <!-- Contact Modal -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeContactModal()">&times;</button>
+      <h2 class="modal-title">Contact Us</h2>
+      <div class="contact-address">
+        <h3>Hong Kong Office</h3>
+        <p>7/F, YEUNG YIU CHUNG (NO.8) IND. BLDG<br/>20 WANG HOI ROAD<br/>KOWLOON BAY, HONG KONG</p>
+      </div>
+      <div class="contact-address">
+        <h3>Email</h3>
+        <p>info@xcsource.com</p>
+      </div>
+    </div>
+  </div>
+
   <footer class="footer">
     <div class="container">© XCSOURCE. All rights reserved.</div>
   </footer>
 
   <script>
+    // Contact Modal Functions
+    function openContactModal() {
+      var modal = document.getElementById('contactModal');
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeContactModal() {
+      var modal = document.getElementById('contactModal');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close modal on overlay click
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('modal-overlay')) {
+        closeContactModal();
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeContactModal();
+      }
+    });
+
     (function () {
       var form = document.getElementById("coopForm");
       var alertBox = document.getElementById("formAlert");
