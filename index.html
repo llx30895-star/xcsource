@@ -923,19 +923,25 @@
             "Message:\n" + formData.message
           );
           
-          // Open email client
+          // Open email client with pre-filled content
+          var subject = encodeURIComponent("Contact from " + formData.name + " - " + formData.inquiry_type);
+          var body = encodeURIComponent(
+            "Name: " + formData.name + "\n" +
+            "Email: " + formData.email + "\n" +
+            "Company: " + formData.company + "\n" +
+            "Inquiry Type: " + formData.inquiry_type + "\n\n" +
+            "Message:\n" + formData.message
+          );
+          
+          // Open email client - user needs to click send
           window.location.href = "mailto:hujoey@qq.com?subject=" + subject + "&body=" + body;
           
-          showAlert("success", "Email client opened! Please send the email.");
-          form.reset();
+          // Show success message - DON'T close modal, let user confirm
+          showAlert("success", "Email client opened! Please click Send in your email app.");
+          submitBtn.disabled = false;
         } catch (err) {
           showAlert("error", "Error: " + err.message);
         } finally {
-        } catch (err) {
-          showAlert("error", "Network error: " + err.message);
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Send Message";
         }
       });
     })();
