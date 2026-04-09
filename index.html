@@ -766,25 +766,22 @@
     </div>
   </section>
 
-  <!-- Contact Modal with Form -->
+  <!-- Contact Modal -->
   <div id="contactModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; justify-content: center; align-items: center;">
-    <div class="modal-content" style="background: #fff; border-radius: 16px; padding: 40px; max-width: 480px; width: 90%; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.2);">
+    <div style="background: #fff; border-radius: 16px; padding: 40px; max-width: 440px; width: 90%; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.2);">
       <button onclick="document.getElementById('contactModal').style.display='none'; document.body.style.overflow='';" style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border: none; background: transparent; font-size: 24px; cursor: pointer; color: #9ca3af;">&times;</button>
-      <h2 style="margin: 0 0 8px 0; font-size: 24px; font-weight: 700; color: #1f2937; text-align: center;">Send us a Message</h2>
-      <p style="margin: 0 0 24px 0; color: #6b7280; font-size: 14px; text-align: center;">We'll respond within 24 hours</p>
-      <form action="https://formspree.io/f/xgopljzn" method="POST" style="display: flex; flex-direction: column; gap: 16px;">
-        <div style="display: flex; gap: 12px;">
-          <input name="name" type="text" placeholder="Your name" required style="flex: 1; padding: 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px;" />
-          <input name="email" type="email" placeholder="Email address" required style="flex: 1; padding: 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px;" />
-        </div>
-        <select name="inquiry_type" style="padding: 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; background: #fff;">
+      <p style="font-size: 13px; font-weight: 600; letter-spacing: 0.2em; color: #d3122b; margin: 0 0 16px 0; text-align: center;">CONTACT</p>
+      <form action="https://formspree.io/f/xgopljzn" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
+        <input name="name" type="text" placeholder="Your name" required style="width: 100%; padding: 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px;" />
+        <input name="email" type="email" placeholder="Email address" required style="width: 100%; padding: 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px;" />
+        <select name="inquiry_type" style="width: 100%; padding: 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; background: #fff;">
           <option>General Inquiry</option>
           <option>Business Cooperation</option>
           <option>Product Inquiry</option>
           <option>Partnership</option>
         </select>
-        <textarea name="message" placeholder="Your message..." required style="padding: 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; min-height: 120px; resize: none; font-family: inherit;"></textarea>
-        <button type="submit" style="padding: 16px; background: #d3122b; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.2s;">Send Message</button>
+        <textarea name="message" placeholder="Your message..." required style="width: 100%; padding: 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; min-height: 100px; resize: none; font-family: inherit;"></textarea>
+        <button type="submit" style="width: 100%; padding: 14px; background: #d3122b; color: #fff; border: none; border-radius: 50px; font-size: 15px; font-weight: 600; cursor: pointer;">Send Message</button>
       </form>
     </div>
   </div>
