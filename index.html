@@ -894,6 +894,7 @@
       form.addEventListener("submit", async function(e) {
         e.preventDefault();
         clearAlert();
+        
         var formData = {
           name: document.getElementById("f-name").value.trim(),
           email: document.getElementById("f-email").value.trim(),
@@ -901,18 +902,22 @@
           inquiry_type: document.getElementById("f-type").value,
           message: document.getElementById("f-message").value.trim()
         };
+        
         if (!validateForm(formData)) {
           showAlert("error", "Please complete the required fields correctly.");
           return;
         }
+        
         submitBtn.disabled = true;
         submitBtn.textContent = "Sending...";
+        
+        // Use Formspree AJAX
         try {
-          var res = await fetch("/api/send-email", {
+          var res = await fetch("https://formspree.io/f/xpwzgvjq", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData)
+            body: new FormData(form)
           });
+          
           if (res.ok) {
             showAlert("success", "Message sent! We'll get back to you soon.");
             form.reset();
