@@ -911,28 +911,36 @@
         submitBtn.disabled = true;
         submitBtn.textContent = "Sending...";
         
-        // Direct Formspree submission
+        // Using Formspree with proper endpoint
         try {
-          // Build URL encoded data
-          var params = new URLSearchParams();
-          params.append("name", formData.name);
-          params.append("email", formData.email);
-          params.append("company", formData.company);
-          params.append("inquiry_type", formData.inquiry_type);
-          params.append("message", formData.message);
+          // Formspree form submission - using JSON format
+          var payload = {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            inquiry_type: formData.inquiry_type,
+            message: formData.message,
+            _replyto: formData.email
+          };
           
           var res = await fetch("https://formspree.io/f/xpwzgvjq", {
             method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: params.toString()
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify(payload)
           });
           
-          if (res.ok || res.status === 200) {
+          if (res.ok) {
             showAlert("success", "Message sent! We'll get back to you soon.");
             form.reset();
           } else {
             showAlert("error", "Failed to send. Please try again.");
           }
+        } catch (err) {
+          showAlert("error", "Error: " + err.message);
+        } finally {
         } catch (err) {
           showAlert("error", "Network error: " + err.message);
         } finally {
