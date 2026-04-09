@@ -773,19 +773,49 @@
     </div>
   </section>
 
-  <!-- Contact Modal -->
+  <!-- Contact Modal with Form -->
   <div class="modal-overlay" id="contactModal">
     <div class="modal-content">
       <button class="modal-close" onclick="closeContactModal()">&times;</button>
       <h2 class="modal-title">Contact Us</h2>
-      <div class="contact-address">
-        <h3>Hong Kong Office</h3>
-        <p>7/F, YEUNG YIU CHUNG (NO.8) IND. BLDG<br/>20 WANG HOI ROAD<br/>KOWLOON BAY, HONG KONG</p>
-      </div>
-      <div class="contact-address">
-        <h3>Email</h3>
-        <p>info@xcsource.com</p>
-      </div>
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group" id="fg-name">
+            <label for="f-name">Full Name *</label>
+            <input id="f-name" name="name" type="text" placeholder="Your full name" />
+            <span class="form-error-msg">Please enter your name.</span>
+          </div>
+          <div class="form-group" id="fg-email">
+            <label for="f-email">Email Address *</label>
+            <input id="f-email" name="email" type="email" placeholder="you@example.com" />
+            <span class="form-error-msg">Please enter a valid email address.</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-company">Company / Organization</label>
+            <input id="f-company" name="company" type="text" placeholder="Where you work (optional)" />
+          </div>
+          <div class="form-group" id="fg-type">
+            <label for="f-type">Cooperation Type *</label>
+            <select id="f-type" name="inquiry_type">
+              <option>General Inquiry</option>
+              <option>Business Cooperation</option>
+              <option>Product Inquiry</option>
+              <option>Media & Partnership</option>
+            </select>
+            <span class="form-error-msg">Please select an inquiry type.</span>
+          </div>
+        </div>
+        <div class="form-group" id="fg-message">
+          <label for="f-message">Your Message *</label>
+          <textarea id="f-message" name="message" placeholder="Tell us about your idea, proposal, or question..."></textarea>
+          <span class="form-error-msg">Please enter your message (max 2000 characters).</span>
+          <span class="form-hint">Max 2000 characters.</span>
+        </div>
+        <div class="form-alert" id="formAlert" role="alert"></div>
+        <button type="submit" class="submit-btn" id="f-submit">Send Message</button>
+      </form>
     </div>
   </div>
 
@@ -824,6 +854,79 @@
         closeContactModal();
       }
     });
+
+    // Contact Form Handling
+    (function () {
+      var form = document.getElementById("contactForm");
+      if (!form) return;
+      
+      var alertBox = document.getElementById("formAlert");
+      var submitBtn = document.getElementById("f-submit");
+
+      function showAlert(type, message) {
+        alertBox.textContent = message;
+        alertBox.className = "form-alert visible " + type;
+      }
+
+      function clearAlert() {
+        alertBox.textContent = "";
+        alertBox.className = "form-alert";
+      }
+
+      function setGroupError(id, hasError) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.className = "form-group" + (hasError ? " has-error" : "");
+      }
+
+      function validateForm(data) {
+        var ok = true;
+        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
+        setGroupError("fg-name", !data.name);
+        setGroupError("fg-email", !emailOk);
+        setGroupError("fg-message", !data.message || data.message.length > 2000);
+        if (!data.name || !emailOk || !data.message || data.message.length > 2000) {
+          ok = false;
+        }
+        return ok;
+      }
+
+      form.addEventListener("submit", async function(e) {
+        e.preventDefault();
+        clearAlert();
+        var formData = {
+          name: document.getElementById("f-name").value.trim(),
+          email: document.getElementById("f-email").value.trim(),
+          company: document.getElementById("f-company").value.trim(),
+          inquiry_type: document.getElementById("f-type").value,
+          message: document.getElementById("f-message").value.trim()
+        };
+        if (!validateForm(formData)) {
+          showAlert("error", "Please complete the required fields correctly.");
+          return;
+        }
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+        try {
+          var res = await fetch("/api/send-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData)
+          });
+          if (res.ok) {
+            showAlert("success", "Message sent! We'll get back to you soon.");
+            form.reset();
+          } else {
+            showAlert("error", "Failed to send. Please try again.");
+          }
+        } catch (err) {
+          showAlert("error", "Network error. Please try again.");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send Message";
+        }
+      });
+    })();
 
   </script>
 </body>
