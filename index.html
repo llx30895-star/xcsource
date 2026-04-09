@@ -911,37 +911,32 @@
         submitBtn.disabled = true;
         submitBtn.textContent = "Sending...";
         
-        // Send email directly using mailto as primary method
+        // Send directly to Formspree
         try {
-          // Using mailto link for direct email
-          var subject = encodeURIComponent("Contact from " + formData.name + " - " + formData.inquiry_type);
-          var body = encodeURIComponent(
-            "Name: " + formData.name + "\n" +
-            "Email: " + formData.email + "\n" +
-            "Company: " + formData.company + "\n" +
-            "Inquiry Type: " + formData.inquiry_type + "\n\n" +
-            "Message:\n" + formData.message
-          );
+          var response = await fetch("https://formspree.io/f/xpwzgvjq", {
+            method: "POST",
+            body: new FormData(form),
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
           
-          // Open email client with pre-filled content
-          var subject = encodeURIComponent("Contact from " + formData.name + " - " + formData.inquiry_type);
-          var body = encodeURIComponent(
-            "Name: " + formData.name + "\n" +
-            "Email: " + formData.email + "\n" +
-            "Company: " + formData.company + "\n" +
-            "Inquiry Type: " + formData.inquiry_type + "\n\n" +
-            "Message:\n" + formData.message
-          );
-          
-          // Open email client - user needs to click send
-          window.location.href = "mailto:hujoey@qq.com?subject=" + subject + "&body=" + body;
-          
-          // Show success message - DON'T close modal, let user confirm
-          showAlert("success", "Email client opened! Please click Send in your email app.");
-          submitBtn.disabled = false;
+          if (response.ok) {
+            showAlert("success", "Message sent! We'll get back to you soon.");
+            form.reset();
+            // Close modal after success
+            setTimeout(function() {
+              document.getElementById('contactModal').classList.remove('active');
+              document.body.style.overflow='';
+            }, 2000);
+          } else {
+            showAlert("error", "Failed to send. Please try again.");
+          }
         } catch (err) {
           showAlert("error", "Error: " + err.message);
         } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send Message";
         }
       });
     })();
