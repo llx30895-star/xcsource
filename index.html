@@ -775,46 +775,36 @@
 
   <!-- Contact Modal with Form -->
   <div class="modal-overlay" id="contactModal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="document.getElementById('contactModal').classList.remove('active'); document.body.style.overflow='';">&times;</button>
-      <h2 class="modal-title">Contact Us</h2>
-      <form class="contact-form" id="contactForm" action="https://formspree.io/f/xgopljzn" method="POST">
-        <div class="form-row">
-          <div class="form-group" id="fg-name">
-            <label for="f-name">Full Name *</label>
-            <input id="f-name" name="name" type="text" placeholder="Your full name" />
-            <span class="form-error-msg">Please enter your name.</span>
+    <div class="modal-content" style="max-width: 480px; padding: 32px;">
+      <button class="modal-close" onclick="document.getElementById('contactModal').classList.remove('active'); document.body.style.overflow='';" style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border: none; background: transparent; font-size: 24px; cursor: pointer; color: #666;">&times;</button>
+      <h2 class="modal-title" style="margin: 0 0 24px 0; font-size: 24px; font-weight: 700; color: #1f2937;">Get in Touch</h2>
+      <p style="margin: 0 0 24px 0; color: #6b7280; font-size: 14px;">Send us a message and we'll respond within 24 hours.</p>
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/xgopljzn" method="POST" style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; gap: 12px;">
+          <div class="form-group" id="fg-name" style="flex: 1;">
+            <label for="f-name" style="display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; color: #374151;">Name *</label>
+            <input id="f-name" name="name" type="text" placeholder="Your name" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: #fff;" />
           </div>
-          <div class="form-group" id="fg-email">
-            <label for="f-email">Email Address *</label>
-            <input id="f-email" name="email" type="email" placeholder="you@example.com" />
-            <span class="form-error-msg">Please enter a valid email address.</span>
+          <div class="form-group" id="fg-email" style="flex: 1;">
+            <label for="f-email" style="display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; color: #374151;">Email *</label>
+            <input id="f-email" name="email" type="email" placeholder="you@email.com" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: #fff;" />
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="f-company">Company / Organization</label>
-            <input id="f-company" name="company" type="text" placeholder="Where you work (optional)" />
-          </div>
-          <div class="form-group" id="fg-type">
-            <label for="f-type">Cooperation Type *</label>
-            <select id="f-type" name="inquiry_type">
+        <div class="form-group" id="fg-type">
+            <label for="f-type" style="display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; color: #374151;">Subject</label>
+            <select id="f-type" name="inquiry_type" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: #fff;">
               <option>General Inquiry</option>
               <option>Business Cooperation</option>
               <option>Product Inquiry</option>
-              <option>Media & Partnership</option>
+              <option>Partnership</option>
             </select>
-            <span class="form-error-msg">Please select an inquiry type.</span>
-          </div>
         </div>
         <div class="form-group" id="fg-message">
-          <label for="f-message">Your Message *</label>
-          <textarea id="f-message" name="message" placeholder="Tell us about your idea, proposal, or question..."></textarea>
-          <span class="form-error-msg">Please enter your message (max 2000 characters).</span>
-          <span class="form-hint">Max 2000 characters.</span>
+          <label for="f-message" style="display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; color: #374151;">Message *</label>
+          <textarea id="f-message" name="message" placeholder="Your message..." style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: #fff; min-height: 100px; resize: vertical;"></textarea>
         </div>
-        <div class="form-alert" id="formAlert" role="alert"></div>
-        <button type="submit" class="submit-btn" id="f-submit">Send Message</button>
+        <div class="form-alert" id="formAlert" role="alert" style="padding: 12px; border-radius: 8px; display: none; font-size: 14px;"></div>
+        <button type="submit" class="submit-btn" id="f-submit" style="width: 100%; padding: 14px; background: #d3122b; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.2s;">Send Message</button>
       </form>
     </div>
   </div>
