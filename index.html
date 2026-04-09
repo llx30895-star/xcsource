@@ -911,21 +911,30 @@
         submitBtn.disabled = true;
         submitBtn.textContent = "Sending...";
         
-        // Use Formspree AJAX
+        // Direct Formspree submission
         try {
+          // Build URL encoded data
+          var params = new URLSearchParams();
+          params.append("name", formData.name);
+          params.append("email", formData.email);
+          params.append("company", formData.company);
+          params.append("inquiry_type", formData.inquiry_type);
+          params.append("message", formData.message);
+          
           var res = await fetch("https://formspree.io/f/xpwzgvjq", {
             method: "POST",
-            body: new FormData(form)
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: params.toString()
           });
           
-          if (res.ok) {
+          if (res.ok || res.status === 200) {
             showAlert("success", "Message sent! We'll get back to you soon.");
             form.reset();
           } else {
             showAlert("error", "Failed to send. Please try again.");
           }
         } catch (err) {
-          showAlert("error", "Network error. Please try again.");
+          showAlert("error", "Network error: " + err.message);
         } finally {
           submitBtn.disabled = false;
           submitBtn.textContent = "Send Message";
