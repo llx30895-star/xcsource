@@ -17,3 +17,8 @@ build/
 venv/
 ENV/
 .openclaw/
+
+# Image optimization scripts and backups
+_optimize_images.py
+assets/products-backup/
+assets/products-original/
