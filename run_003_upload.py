@@ -24,7 +24,6 @@ import json
 import re
 import shutil
 import subprocess
-import sys
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -329,7 +328,7 @@ def write_batch_manifest(
     target: str,
     records: List[ProductRecord],
     processed_items: List[Dict],
-    git_summary: Dict[str, str],
+    git_summary: Dict[str, object],
 ) -> Path:
     batch_dir = UPLOAD_OUTBOX_DIR / batch_id
     batch_dir.mkdir(parents=True, exist_ok=True)
@@ -361,7 +360,7 @@ def run_git_command(args: List[str]) -> subprocess.CompletedProcess:
     return subprocess.run(args, cwd=PROJECT_ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace")
 
 
-def git_commit_and_push(batch_id: str, mode: str, target: str, remote: str, branch: str) -> Tuple[bool, str]:
+def get_tracked_paths(batch_id: str) -> List[str]:
     tracked_paths = [
         str(EXCEL_PATH.relative_to(PROJECT_ROOT)),
         str(UPLOAD_STATE_FILE.relative_to(PROJECT_ROOT)),
@@ -370,28 +369,119 @@ def git_commit_and_push(batch_id: str, mode: str, target: str, remote: str, bran
     uploaded_batch_dir = UPLOAD_OUTBOX_DIR / batch_id
     if uploaded_batch_dir.exists():
         tracked_paths.append(str(uploaded_batch_dir.relative_to(PROJECT_ROOT)))
+    return tracked_paths
+
+
+def git_precheck(remote: str, branch: str) -> Tuple[bool, Dict[str, object]]:
+    summary: Dict[str, object] = {
+        "ok": True,
+        "current_branch": "",
+        "remote_exists": False,
+        "branch_matches": False,
+        "dirty_paths_count": 0,
+        "dirty_paths_preview": [],
+        "warnings": [],
+        "errors": [],
+    }
+
+    branch_result = run_git_command(["git", "branch", "--show-current"])
+    if branch_result.returncode != 0:
+        summary["ok"] = False
+        summary["errors"].append(f"无法获取当前分支: {branch_result.stderr.strip() or branch_result.stdout.strip()}")
+        return False, summary
+
+    current_branch = (branch_result.stdout or "").strip()
+    summary["current_branch"] = current_branch
+    summary["branch_matches"] = current_branch == branch
+    if current_branch != branch:
+        summary["warnings"].append(f"当前分支为 {current_branch}，目标推送分支为 {branch}")
+
+    remote_result = run_git_command(["git", "remote"])
+    if remote_result.returncode != 0:
+        summary["ok"] = False
+        summary["errors"].append(f"无法读取 git remote: {remote_result.stderr.strip() or remote_result.stdout.strip()}")
+        return False, summary
+
+    remotes = [line.strip() for line in (remote_result.stdout or "").splitlines() if line.strip()]
+    summary["remote_exists"] = remote in remotes
+    if remote not in remotes:
+        summary["ok"] = False
+        summary["errors"].append(f"git remote 不存在: {remote}")
+
+    status_result = run_git_command(["git", "status", "--short"])
+    if status_result.returncode == 0:
+        dirty_paths = [line.rstrip() for line in (status_result.stdout or "").splitlines() if line.strip()]
+        summary["dirty_paths_count"] = len(dirty_paths)
+        summary["dirty_paths_preview"] = dirty_paths[:20]
+        if dirty_paths:
+            summary["warnings"].append(f"工作区存在 {len(dirty_paths)} 条未清理改动；脚本仍只会提交 003 相关文件")
+    else:
+        summary["warnings"].append(f"无法读取 git status: {status_result.stderr.strip() or status_result.stdout.strip()}")
+
+    return bool(summary["ok"]), summary
+
+
+def git_commit_and_push(batch_id: str, mode: str, target: str, remote: str, branch: str, commit_only: bool) -> Tuple[bool, str, Dict[str, object]]:
+    tracked_paths = get_tracked_paths(batch_id)
+    git_details: Dict[str, object] = {
+        "action": "commit-only" if commit_only else "commit-and-push",
+        "tracked_paths": tracked_paths,
+        "commit_message": "",
+        "commit_sha": "",
+        "push_skipped": commit_only,
+    }
+
+    precheck_ok, precheck = git_precheck(remote=remote, branch=branch)
+    git_details["precheck"] = precheck
+    if not precheck_ok:
+        return False, "git 预检查失败", git_details
 
     add_cmd = ["git", "add", "--"] + tracked_paths
     add_result = run_git_command(add_cmd)
+    git_details["add"] = {
+        "returncode": add_result.returncode,
+        "stdout": (add_result.stdout or "").strip(),
+        "stderr": (add_result.stderr or "").strip(),
+    }
     if add_result.returncode != 0:
-        return False, f"git add 失败: {add_result.stderr.strip() or add_result.stdout.strip()}"
+        return False, f"git add 失败: {add_result.stderr.strip() or add_result.stdout.strip()}", git_details
 
     diff_result = run_git_command(["git", "diff", "--cached", "--quiet", "--"] + tracked_paths)
+    git_details["diff_cached"] = {"returncode": diff_result.returncode}
     if diff_result.returncode == 0:
-        return True, "没有可提交的 003 变更"
+        return True, "没有可提交的 003 变更", git_details
     if diff_result.returncode not in (0, 1):
-        return False, f"git diff --cached 检查失败: {diff_result.stderr.strip() or diff_result.stdout.strip()}"
+        return False, f"git diff --cached 检查失败: {diff_result.stderr.strip() or diff_result.stdout.strip()}", git_details
 
     commit_message = f"feat: 003 上传批次 {batch_id}\n\n- mode: {mode}\n- target: {target}\n- state: Excel + upload_state.json + upload log + manifest"
+    git_details["commit_message"] = commit_message
+
     commit_result = run_git_command(["git", "commit", "-m", commit_message])
+    git_details["commit"] = {
+        "returncode": commit_result.returncode,
+        "stdout": (commit_result.stdout or "").strip(),
+        "stderr": (commit_result.stderr or "").strip(),
+    }
     if commit_result.returncode != 0:
-        return False, f"git commit 失败: {commit_result.stderr.strip() or commit_result.stdout.strip()}"
+        return False, f"git commit 失败: {commit_result.stderr.strip() or commit_result.stdout.strip()}", git_details
+
+    rev_result = run_git_command(["git", "rev-parse", "HEAD"])
+    if rev_result.returncode == 0:
+        git_details["commit_sha"] = (rev_result.stdout or "").strip()
+
+    if commit_only:
+        return True, f"已完成本地提交: {git_details['commit_sha'] or 'latest'}", git_details
 
     push_result = run_git_command(["git", "push", remote, branch])
+    git_details["push"] = {
+        "returncode": push_result.returncode,
+        "stdout": (push_result.stdout or "").strip(),
+        "stderr": (push_result.stderr or "").strip(),
+    }
     if push_result.returncode != 0:
-        return False, f"git push 失败: {push_result.stderr.strip() or push_result.stdout.strip()}"
+        return False, f"git push 失败: {push_result.stderr.strip() or push_result.stdout.strip()}", git_details
 
-    return True, f"已推送到 {remote}/{branch}"
+    return True, f"已推送到 {remote}/{branch}", git_details
 
 
 def parse_args() -> argparse.Namespace:
@@ -400,14 +490,19 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--target", default=DEFAULT_UPLOAD_TARGET, help="上传目标标识")
     parser.add_argument("--limit", type=int, default=0, help="仅处理前 N 条待上传记录，0 表示全部")
     parser.add_argument("--git-push", action="store_true", help="处理成功后自动提交并推送 003 产物到 GitHub")
+    parser.add_argument("--git-commit-only", action="store_true", help="只执行 git add + commit，不执行 git push")
     parser.add_argument("--git-remote", default=DEFAULT_GIT_REMOTE, help="git push 的 remote 名称")
     parser.add_argument("--git-branch", default=DEFAULT_GIT_BRANCH, help="git push 的分支名称")
     return parser.parse_args()
 
 
-def run_003_upload(mode: str, target: str, limit: int, git_push: bool, git_remote: str, git_branch: str) -> int:
+def run_003_upload(mode: str, target: str, limit: int, git_push: bool, git_commit_only: bool, git_remote: str, git_branch: str) -> int:
     log("=" * 60)
     log(f"003 产品上传执行开始 | mode={mode} | target={target}")
+
+    if git_push and git_commit_only:
+        log("错误: --git-push 与 --git-commit-only 不能同时使用")
+        return 1
 
     if not EXCEL_PATH.exists():
         log(f"错误: Excel 文件不存在 - {EXCEL_PATH}")
@@ -436,12 +531,15 @@ def run_003_upload(mode: str, target: str, limit: int, git_push: bool, git_remot
     failed_count = 0
     skipped_count = 0
     processed_items: List[Dict] = []
-    git_summary = {
-        "enabled": str(git_push).lower(),
+    git_enabled = git_push or git_commit_only
+    git_summary: Dict[str, object] = {
+        "enabled": git_enabled,
+        "action": "commit-only" if git_commit_only else ("commit-and-push" if git_push else "none"),
         "status": "not-run",
         "message": "",
-        "remote": git_remote if git_push else "",
-        "branch": git_branch if git_push else "",
+        "remote": git_remote if git_enabled else "",
+        "branch": git_branch if git_enabled else "",
+        "details": {},
     }
 
     for record in records:
@@ -489,16 +587,27 @@ def run_003_upload(mode: str, target: str, limit: int, git_push: bool, git_remot
         git_summary=git_summary,
     )
 
-    if git_push and failed_count == 0:
-        ok, message = git_commit_and_push(batch_id=batch_id, mode=mode, target=target, remote=git_remote, branch=git_branch)
+    if git_enabled and failed_count == 0:
+        ok, message, details = git_commit_and_push(
+            batch_id=batch_id,
+            mode=mode,
+            target=target,
+            remote=git_remote,
+            branch=git_branch,
+            commit_only=git_commit_only,
+        )
         git_summary["status"] = "success" if ok else "failed"
         git_summary["message"] = message
+        git_summary["details"] = details
         if ok:
-            log(f"Git 推送完成: {message}")
+            if git_commit_only:
+                log(f"Git 本地提交完成: {message}")
+            else:
+                log(f"Git 推送完成: {message}")
         else:
             failed_count += 1
-            log(f"Git 推送失败: {message}")
-        write_batch_manifest(
+            log(f"Git 执行失败: {message}")
+        manifest_path = write_batch_manifest(
             batch_id=batch_id,
             mode=mode,
             target=target,
@@ -506,10 +615,10 @@ def run_003_upload(mode: str, target: str, limit: int, git_push: bool, git_remot
             processed_items=processed_items,
             git_summary=git_summary,
         )
-    elif git_push:
+    elif git_enabled:
         git_summary["status"] = "skipped"
-        git_summary["message"] = "存在失败记录，跳过 git push"
-        write_batch_manifest(
+        git_summary["message"] = "存在失败记录，跳过 git 执行"
+        manifest_path = write_batch_manifest(
             batch_id=batch_id,
             mode=mode,
             target=target,
@@ -529,8 +638,8 @@ def run_003_upload(mode: str, target: str, limit: int, git_push: bool, git_remot
     log(f"  Manifest: {manifest_path}")
     if mode == "local-copy":
         log(f"  上传目录: {UPLOAD_OUTBOX_DIR}")
-    if git_push:
-        log(f"  Git: remote={git_remote}, branch={git_branch}, status={git_summary['status']}")
+    if git_enabled:
+        log(f"  Git: action={git_summary['action']}, remote={git_remote}, branch={git_branch}, status={git_summary['status']}")
     log("=" * 60)
     return 0 if failed_count == 0 else 2
 
@@ -544,6 +653,7 @@ def main() -> None:
                 target=args.target,
                 limit=args.limit,
                 git_push=args.git_push,
+                git_commit_only=args.git_commit_only,
                 git_remote=args.git_remote,
                 git_branch=args.git_branch,
             )
