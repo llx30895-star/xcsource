@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import json
 import re
+import shutil
 from pathlib import Path
 from typing import List, Dict, Tuple
 
@@ -15,6 +16,7 @@ PROJECT_ROOT = Path(r"C:\Users\Win11\Desktop\XCSOURCE")
 PRODUCTS_DIR = PROJECT_ROOT / "assets" / "products"
 EXCEL_PATH = PRODUCTS_DIR / "产品识别.xlsx"
 OUTPUT_JSON = PRODUCTS_DIR / "products.json"
+DISPLAY_DIR = PRODUCTS_DIR / "display"
 REQUIRED_HEADERS = ["是否上传", "图片超链接", "英文描述"]
 HYPERLINK_RE = re.compile(r'=HYPERLINK\("([^"]+)"\s*,\s*"([^"]*)"\)', re.IGNORECASE)
 
@@ -53,6 +55,8 @@ def main() -> int:
     missing = [header for header in REQUIRED_HEADERS if header not in header_map]
     if missing:
         raise KeyError(f"缺少必要字段: {', '.join(missing)}")
+
+    DISPLAY_DIR.mkdir(parents=True, exist_ok=True)
 
     stats: Dict[str, object] = {
         "records_read": 0,
@@ -108,9 +112,14 @@ def main() -> int:
             stats["exceptions"].append(f"第{row_number}行: 图片路径超出项目目录 -> {image_path}")
             continue
 
+        output_name = image_path.name
+        display_image_path = DISPLAY_DIR / output_name
+        if display_image_path.resolve() != image_path.resolve():
+            shutil.copy2(image_path, display_image_path)
+
         products.append(
             {
-                "image": to_web_path(image_path),
+                "image": to_web_path(display_image_path),
                 "description": description,
                 "sourceRow": row_number,
                 "imageName": display_text or image_path.name,
