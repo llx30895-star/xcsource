@@ -353,27 +353,17 @@
     }
 
     .product-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 340px;
       background: linear-gradient(180deg, #fafaf8 0%, #f3f1ed 100%);
       border-radius: 22px;
       overflow: hidden;
-      aspect-ratio: 1.14 / 1;
       border: 1px solid #eceae5;
       padding: 14px;
       box-shadow: 0 14px 34px rgba(15, 23, 42, 0.05);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .product-card.is-featured {
-      aspect-ratio: 1.18 / 1;
-      box-shadow: 0 20px 44px rgba(15, 23, 42, 0.08);
-    }
-
-    .product-card:nth-child(3n+2) {
-      transform: translateY(10px);
-    }
-
-    .product-card.is-featured:nth-child(3n+2) {
-      transform: translateY(0);
     }
 
     .product-card:hover {
@@ -381,19 +371,80 @@
       box-shadow: 0 22px 50px rgba(15, 23, 42, 0.1);
     }
 
+    .product-card-media {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 250px;
+      padding: 10px;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
     .product-card img {
       width: 100%;
-      height: 100%;
+      height: 230px;
       object-fit: contain;
       object-position: center;
       transition: transform 0.35s ease;
-      background: #ffffff;
-      border-radius: 16px;
       content-visibility: auto;
     }
 
     .product-card:hover img {
       transform: scale(1.03);
+    }
+
+    .product-description {
+      margin: 14px 4px 2px;
+      color: #374151;
+      font-size: 15px;
+      line-height: 1.55;
+      text-align: left;
+      word-break: break-word;
+    }
+
+    .products-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 34px auto 0;
+    }
+
+    .pagination-btn,
+    .pagination-page {
+      border: 1px solid #d7d0c4;
+      background: rgba(255,255,255,0.95);
+      color: #374151;
+      min-width: 44px;
+      height: 44px;
+      padding: 0 16px;
+      border-radius: 999px;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .pagination-btn:hover,
+    .pagination-page:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .pagination-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      border-color: #d7d0c4;
+      color: #6b7280;
+    }
+
+    .pagination-page.is-active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
     }
 
     .modal-overlay {
@@ -673,7 +724,10 @@
 
       .brand-card { min-height: 220px; transform: none !important; }
       .brand-card img { max-width: 240px; max-height: 150px; }
-      .product-card { aspect-ratio: 1 / 1; padding: 10px; transform: none !important; }
+      .product-card { min-height: auto; padding: 10px; transform: none !important; }
+      .product-card-media { min-height: 220px; }
+      .product-card img { height: 200px; }
+      .product-description { font-size: 14px; margin-top: 12px; }
 
       .brands-grid,
       .products-grid,
@@ -735,26 +789,8 @@
           <p class="eyebrow">PRODUCTS</p>
         </div>
 
-        <div class="products-grid">
-          <div class="product-card is-featured"><img src="assets/products/MC100101-A-16-1-2-1.jpg" alt="Product 09" fetchpriority="high" decoding="async" width="1600" height="1600" /></div>
-          <div class="product-card is-featured"><img src="assets/products/IK800301-A-16-1-1.jpg" alt="Product 05" fetchpriority="high" decoding="async" width="1600" height="1600" /></div>
-          <div class="product-card is-featured"><img src="assets/products/IK2036-A-16-mian01.jpg" alt="Product 02" fetchpriority="high" decoding="async" width="1600" height="1600" /></div>
-          <div class="product-card"><img src="assets/products/SM100102-A-16-1-1.jpg" alt="Product 11" loading="lazy" decoding="async" width="1600" height="1600" /></div>
-          <div class="product-card"><img src="assets/products/IK800603-A-16-2-1.jpg" alt="Product 06" loading="lazy" decoding="async" width="1600" height="1600" /></div>
-          <div class="product-card"><img src="assets/products/IK905601-A-16-1-3.jpg" alt="Product 07" loading="lazy" decoding="async" width="1600" height="1600" /></div>
-          <div class="product-card"><img src="assets/products/IK500302-A-16-1-2.jpg" alt="Product 03" loading="lazy" decoding="async" width="1600" height="1600" /></div>
-          <div class="product-card"><img src="assets/products/IK905701-A-16-2.jpg" alt="Product 08" loading="lazy" decoding="async" width="1600" height="1600" /></div>
-          <div class="product-card"><img src="assets/products/IK600209-A-16-1-1.jpg" alt="Product 04" loading="lazy" decoding="async" width="1600" height="1600" /></div>
-          <div class="product-card"><img src="assets/products/IK200101-A-16-1-7.jpg" alt="Product 01" loading="lazy" decoding="async" width="1600" height="1600" /></div>
-          <div class="product-card"><img src="assets/products/SH413-A-16-main1.jpg" alt="Product 10" loading="lazy" decoding="async" width="1600" height="1600" /></div>
-          <div class="product-card"><img src="assets/products/product-18.jpg" alt="Product 18" loading="lazy" decoding="async" width="1600" height="1600" /></div>
-          <div class="product-card"><img src="assets/products/product-14.jpg" alt="Product 14" loading="lazy" decoding="async" width="1000" height="1000" /></div>
-          <div class="product-card"><img src="assets/products/product-15.jpg" alt="Product 15" loading="lazy" decoding="async" width="1000" height="1000" /></div>
-          <div class="product-card"><img src="assets/products/product-12.jpg" alt="Product 12" loading="lazy" decoding="async" width="1000" height="1000" /></div>
-          <div class="product-card"><img src="assets/products/product-13.jpg" alt="Product 13" loading="lazy" decoding="async" width="1000" height="1000" /></div>
-          <div class="product-card"><img src="assets/products/product-16.jpg" alt="Product 16" loading="lazy" decoding="async" width="200" height="200" /></div>
-          <div class="product-card"><img src="assets/products/product-17.jpg" alt="Product 17" loading="lazy" decoding="async" width="200" height="200" /></div>
-        </div>
+        <div class="products-grid" id="productsGrid"></div>
+        <div class="products-pagination" id="productsPagination" aria-label="Products pagination"></div>
       </div>
     </div>
   </section>
@@ -800,6 +836,96 @@
   </footer>
 
   <script>
+    var PRODUCTS_PAGE_SIZE = 18;
+    var productsState = {
+      items: [],
+      currentPage: 1,
+      totalPages: 1
+    };
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function renderProductsPage(page) {
+      var grid = document.getElementById('productsGrid');
+      var pagination = document.getElementById('productsPagination');
+      if (!grid || !pagination) return;
+
+      var totalPages = Math.max(1, Math.ceil(productsState.items.length / PRODUCTS_PAGE_SIZE));
+      productsState.totalPages = totalPages;
+      productsState.currentPage = Math.min(Math.max(page, 1), totalPages);
+
+      var start = (productsState.currentPage - 1) * PRODUCTS_PAGE_SIZE;
+      var pageItems = productsState.items.slice(start, start + PRODUCTS_PAGE_SIZE);
+
+      grid.innerHTML = pageItems.map(function(item, index) {
+        var imageLoading = (start + index) < 3 ? 'eager' : 'lazy';
+        return '' +
+          '<article class="product-card">' +
+            '<div class="product-card-media">' +
+              '<img src="' + encodeURI(item.image) + '" alt="' + escapeHtml(item.description) + '" loading="' + imageLoading + '" decoding="async" />' +
+            '</div>' +
+            '<p class="product-description">' + escapeHtml(item.description) + '</p>' +
+          '</article>';
+      }).join('');
+
+      var pageButtons = '';
+      for (var i = 1; i <= totalPages; i += 1) {
+        pageButtons += '<button type="button" class="pagination-page' + (i === productsState.currentPage ? ' is-active' : '') + '" data-page="' + i + '" aria-label="Page ' + i + '" aria-current="' + (i === productsState.currentPage ? 'page' : 'false') + '">' + i + '</button>';
+      }
+
+      pagination.innerHTML = '' +
+        '<button type="button" class="pagination-btn" data-page="' + (productsState.currentPage - 1) + '" ' + (productsState.currentPage === 1 ? 'disabled' : '') + '>Prev</button>' +
+        pageButtons +
+        '<button type="button" class="pagination-btn" data-page="' + (productsState.currentPage + 1) + '" ' + (productsState.currentPage === totalPages ? 'disabled' : '') + '>Next</button>';
+    }
+
+    async function loadProducts() {
+      var response = await fetch('assets/products/products.json', { cache: 'no-store' });
+      if (!response.ok) {
+        throw new Error('Failed to load products data');
+      }
+
+      var items = await response.json();
+      if (!Array.isArray(items)) {
+        throw new Error('Invalid products data format');
+      }
+
+      productsState.items = items;
+      renderProductsPage(1);
+    }
+
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('modal-overlay')) {
+        closeContactModal();
+      }
+
+      if (e.target.matches('#productsPagination button[data-page]')) {
+        var nextPage = Number(e.target.getAttribute('data-page'));
+        if (!Number.isNaN(nextPage)) {
+          renderProductsPage(nextPage);
+        }
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeContactModal();
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      loadProducts().catch(function(err) {
+        console.error('Products render failed:', err);
+      });
+    });
+
     // Contact Modal Functions
     function openContactModal() {
       var modal = document.getElementById('contactModal');
@@ -816,20 +942,6 @@
         document.body.style.overflow = '';
       }
     }
-
-    // Close modal on overlay click
-    document.addEventListener('click', function(e) {
-      if (e.target.classList.contains('modal-overlay')) {
-        closeContactModal();
-      }
-    });
-
-    // Close modal on Escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeContactModal();
-      }
-    });
 
     // Contact Form Handling
     (function () {
@@ -874,7 +986,6 @@
         submitBtn.disabled = true;
         submitBtn.textContent = "Sending...";
         
-        // Send to Formspree using standard form submission
         try {
           var response = await fetch(form.action, {
             method: "POST",
@@ -887,7 +998,6 @@
           if (response.ok) {
             showAlert("success", "Message sent! We'll get back to you soon.");
             form.reset();
-            // Close modal after success
             setTimeout(function() {
               document.getElementById('contactModal').classList.remove('active');
               document.body.style.overflow='';
