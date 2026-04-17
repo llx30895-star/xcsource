@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "note": "Do not change the semantics of 是否上传. It remains the frontend visibility filter. 003 must use 上传状态 as an independent workflow field.",
+  "preserve_fields": {
+    "是否上传": {
+      "type": "string",
+      "allowed": ["否", "是", ""],
+      "semantic": "frontend-visibility-filter",
+      "owner": "002/frontend",
+      "description": "Retains existing meaning. generate_products_data.py still filters rows by 是否上传 = 否."
+    }
+  },
+  "workflow_fields": {
+    "记录ID": {
+      "type": "string",
+      "required": false,
+      "example": "PRD-20260417-0001"
+    },
+    "流程阶段": {
+      "type": "string",
+      "enum": [
+        "001_已采集",
+        "002_待识别",
+        "002_已识别",
+        "002_已生成前端数据",
+        "003_待上传",
+        "003_上传中",
+        "003_上传成功",
+        "003_上传失败",
+        "003_已回写",
+        "closed"
+      ]
+    },
+    "识别状态": {
+      "type": "string",
+      "enum": ["pending", "success", "failed"]
+    },
+    "前端生成状态": {
+      "type": "string",
+      "enum": ["pending", "success", "failed"]
+    },
+    "上传状态": {
+      "type": "string",
+      "enum": ["pending", "uploading", "success", "failed", "skipped", "retry"],
+      "owner": "003"
+    },
+    "上传时间": {
+      "type": "string",
+      "format": "yyyy-MM-dd HH:mm:ss"
+    },
+    "上传目标": {
+      "type": "string",
+      "example": "github_pages"
+    },
+    "上传批次号": {
+      "type": "string",
+      "example": "UP-20260417-152308"
+    },
+    "上传结果": {
+      "type": "string"
+    },
+    "失败原因": {
+      "type": "string"
+    },
+    "最近处理时间": {
+      "type": "string",
+      "format": "yyyy-MM-dd HH:mm:ss"
+    }
+  },
+  "default_values_for_002_new_rows": {
+    "记录ID": "",
+    "流程阶段": "002_已识别",
+    "识别状态": "success",
+    "前端生成状态": "pending",
+    "上传状态": "pending",
+    "上传时间": "",
+    "上传目标": "",
+    "上传批次号": "",
+    "上传结果": "",
+    "失败原因": "",
+    "最近处理时间": "<now>"
+  }
+}
