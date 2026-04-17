@@ -246,5 +246,20 @@
     "error": "",
     "remote_path": "C:\\Users\\Win11\\Desktop\\XCSOURCE\\assets\\products\\uploaded_by_003\\UP-20260417-162837\\PRD-UNKNOWN-5",
     "last_processed_at": "2026-04-17 16:28:37"
+  },
+  "PRD-UNKNOWN-6": {
+    "sequence": "5",
+    "image_name": "IK800301-A-16-1-1.jpg",
+    "image_path": "C:\\Users\\Win11\\Desktop\\XCSOURCE\\assets\\products\\已上传图片\\IK800301-A-16-1-1.jpg",
+    "english_description": "Kids’ Bookshelf and Toy Organizer",
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:36:32",
+    "batch_id": "UP-20260417-163632",
+    "result": "已复制到 003 上传目录: C:\\Users\\Win11\\Desktop\\XCSOURCE\\assets\\products\\uploaded_by_003\\UP-20260417-163632\\PRD-UNKNOWN-6\\IK800301-A-16-1-1.jpg",
+    "error": "",
+    "remote_path": "C:\\Users\\Win11\\Desktop\\XCSOURCE\\assets\\products\\uploaded_by_003\\UP-20260417-163632\\PRD-UNKNOWN-6",
+    "last_processed_at": "2026-04-17 16:36:32"
   }
 }
