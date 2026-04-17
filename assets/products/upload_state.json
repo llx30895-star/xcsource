@@ -1,0 +1,250 @@
+{
+  "PRD-1": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-2": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-3": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-4": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-5": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-6": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-7": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-8": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-9": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-10": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-11": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-12": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-13": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-14": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-15": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-16": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-17": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-18": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-19": {
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:00:32",
+    "batch_id": "UP-20260417-160032",
+    "result": "模拟上传成功",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:00:32"
+  },
+  "PRD-UNKNOWN-2": {
+    "sequence": "1",
+    "image_name": "IK200101-A-16-1-7.jpg",
+    "image_path": "C:\\Users\\Win11\\Desktop\\XCSOURCE\\assets\\products\\已上传图片\\IK200101-A-16-1-7.jpg",
+    "english_description": "5-in-1 Multi-Functional Opener",
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "manual",
+    "uploaded_at": "2026-04-17 16:10:01",
+    "batch_id": "UP-20260417-161001",
+    "result": "人工确认已上传: IK200101-A-16-1-7.jpg -> manual",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:10:01"
+  },
+  "PRD-UNKNOWN-3": {
+    "sequence": "2",
+    "image_name": "IK2036-A-16-mian01.jpg",
+    "image_path": "C:\\Users\\Win11\\Desktop\\XCSOURCE\\assets\\products\\已上传图片\\IK2036-A-16-mian01.jpg",
+    "english_description": "Vanity Table with Mirror and Stool",
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "manual",
+    "uploaded_at": "2026-04-17 16:10:01",
+    "batch_id": "UP-20260417-161001",
+    "result": "人工确认已上传: IK2036-A-16-mian01.jpg -> manual",
+    "error": "",
+    "last_processed_at": "2026-04-17 16:10:01"
+  },
+  "PRD-UNKNOWN-4": {
+    "sequence": "3",
+    "image_name": "IK500302-A-16-1-2.jpg",
+    "image_path": "C:\\Users\\Win11\\Desktop\\XCSOURCE\\assets\\products\\已上传图片\\IK500302-A-16-1-2.jpg",
+    "english_description": "Kitchen Baker’s Rack with Fridge Space",
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "local_outbox",
+    "uploaded_at": "2026-04-17 16:21:03",
+    "batch_id": "UP-20260417-162103",
+    "result": "已复制到 003 上传目录: C:\\Users\\Win11\\Desktop\\XCSOURCE\\assets\\products\\uploaded_by_003\\UP-20260417-162103\\PRD-UNKNOWN-4\\IK500302-A-16-1-2.jpg",
+    "error": "",
+    "remote_path": "C:\\Users\\Win11\\Desktop\\XCSOURCE\\assets\\products\\uploaded_by_003\\UP-20260417-162103\\PRD-UNKNOWN-4",
+    "last_processed_at": "2026-04-17 16:21:03"
+  },
+  "PRD-UNKNOWN-5": {
+    "sequence": "4",
+    "image_name": "IK600209-A-16-1-1.jpg",
+    "image_path": "C:\\Users\\Win11\\Desktop\\XCSOURCE\\assets\\products\\已上传图片\\IK600209-A-16-1-1.jpg",
+    "english_description": "3D Printer Storage Workbench",
+    "upload_status": "success",
+    "stage": "003_已回写",
+    "upload_target": "github_pages",
+    "uploaded_at": "2026-04-17 16:28:37",
+    "batch_id": "UP-20260417-162837",
+    "result": "已复制到 003 上传目录: C:\\Users\\Win11\\Desktop\\XCSOURCE\\assets\\products\\uploaded_by_003\\UP-20260417-162837\\PRD-UNKNOWN-5\\IK600209-A-16-1-1.jpg",
+    "error": "",
+    "remote_path": "C:\\Users\\Win11\\Desktop\\XCSOURCE\\assets\\products\\uploaded_by_003\\UP-20260417-162837\\PRD-UNKNOWN-5",
+    "last_processed_at": "2026-04-17 16:28:37"
+  }
+}
